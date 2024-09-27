@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coffee</title>
+    <link rel="shortcut icon" href="./assets/img/favicon.png" type="">
+    <link rel="stylesheet" href="./assets/css/login.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&amp;display=swap&amp;subset=vietnamese" rel="stylesheet">
+    <link rel="stylesheet" href="./assets/icon/fontawesome-free-6.2.0-web/css/all.css">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div>
+        <h2>Login Form</h2>
+        <form id="loginForm">
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" required><br><br>
+
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required><br><br>
+
+            <button type="submit">Login</button>
+        </form>
+
+        <p class="register-link">
+            Bạn chưa có tài khoản? <a href="register.html">Đăng ký ngay</a>
+        </p>
+    </div>
+
+    <p id="serverResponse"></p>
+
+    <script>
+        // Handle login form submission
+        document.getElementById("loginForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+
+            // Get the username and password
+            const username = document.getElementById("username").value;
+            const password = document.getElementById("password").value;
+
+            // Create login data object
+            const loginData = {
+                username: username,
+                password: password
+            };
+
+            // Send a POST request to the login endpoint
+            fetch("http://localhost:8080/api/v1/user/log-in", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(loginData)
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.accessToken) {
+                    // Store accessToken in localStorage
+                    localStorage.setItem("accessToken", data.accessToken);
+
+                    // Display success message
+                    //document.getElementById("serverResponse").innerText = "Login successful! Access token stored.";
+                    alert("Login successful!")
+
+                    window.location.href = "main.html";
+                } else {
+                    // Display error message
+                    document.getElementById("serverResponse").innerText = "Login failed. Please try again.";
+                }
+            })
+            .catch(error => {
+                console.error("Error:", error);
+                document.getElementById("serverResponse").innerText = "An error occurred during login.";
+            });
+        });
+    </script>
+</body>
+</html>

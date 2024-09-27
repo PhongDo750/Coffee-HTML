@@ -1,0 +1,365 @@
+/* Đảm bảo main và header có kích thước hợp lý */
+.main {
+    width: 100%;
+    height: 100vh; /* Đặt chiều cao của khung chính thành 100% chiều cao của cửa sổ trình duyệt */
+}
+
+.header {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+/* Điều chỉnh hiển thị của ảnh trong header */
+.header_img {
+    width: 100%;
+    height: 100%;
+    overflow: hidden; /* Đảm bảo ảnh không tràn ra ngoài */
+}
+
+.header_img-main {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Đảm bảo ảnh bao phủ toàn bộ khung mà không bị méo */
+    object-position: center; /* Căn chỉnh ảnh ở giữa */
+}
+
+/* Sử dụng Dancing Script cho tiêu đề */
+.header_text h1 {
+    font-size: 48px;
+    font-weight: bold;
+    font-family: 'Dancing Script', cursive; /* Áp dụng phông chữ Dancing Script */
+    color: white;
+}
+
+.header_text p {
+    font-size: 18px;
+    max-width: 600px;
+    margin: 0 auto;
+    color: white;
+    font-family: 'Roboto', sans-serif; /* Sử dụng Roboto cho phần mô tả */
+}
+
+/* Định dạng chung cho thanh navbar */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #000; /* Màu nền của thanh navbar */
+    color: white;
+    position: fixed;
+    width: 100%;
+    top: 0; /* Cố định navbar ở đầu trang */
+    z-index: 1000; /* Đảm bảo nó nằm phía trên các phần tử khác */
+    font-family: 'Roboto', sans-serif; /* Sử dụng phông Roboto */
+}
+
+/* Logo */
+.navbar_logo img {
+    height: 50px; /* Tùy chỉnh kích thước logo */
+}
+
+/* Menu của navbar */
+.navbar_menu {
+    display: flex;
+    list-style: none;
+    gap: 20px;
+    font-size: 18px; /* Tăng kích thước chữ */
+}
+
+.navbar_menu li {
+    display: inline;
+}
+
+.navbar_menu a {
+    text-decoration: none;
+    color: white;
+    font-weight: 500; /* Dùng font-weight 500 cho chữ đậm hơn một chút */
+    padding: 10px 15px;
+    transition: color 0.3s ease;
+}
+
+/* Dropdown */
+.dropdown_content {
+    display: none;
+    position: absolute;
+    background-color: white;
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2); /* Tạo đổ bóng mềm mại */
+    min-width: 220px;
+    border-radius: 8px; /* Bo tròn góc cho dropdown */
+    overflow: hidden;
+    z-index: 1;
+    text-align: left;
+    opacity: 0; /* Ban đầu dropdown ẩn */
+    transform: translateY(10px); /* Tạo hiệu ứng chuyển đổi vị trí */
+    transition: opacity 0.3s ease, transform 0.3s ease; /* Hiệu ứng mở dropdown mượt */
+}
+
+.dropdown_content li {
+    border-bottom: 1px solid #ddd; /* Đường viền nhẹ giữa các mục */
+}
+
+.dropdown_content li:last-child {
+    border-bottom: none; /* Không có viền ở mục cuối */
+}
+
+/* Màu chữ và style mặc định cho mục trong dropdown */
+.dropdown_content li a {
+    color: #333; /* Màu chữ mặc định cho dropdown */
+    padding: 12px 20px;
+    display: block;
+    transition: background-color 0.3s ease, color 0.3s ease; /* Hiệu ứng hover mượt */
+    font-size: 16px;
+    font-weight: 400;
+}
+
+/* Khi hover vào mục con trong dropdown */
+.dropdown_content li a:hover {
+    background-color: #f0a500; /* Nền vàng nhạt khi hover */
+    color: white; /* Chữ trắng khi hover */
+}
+
+/* Hiển thị dropdown khi hover vào mục chính */
+.dropdown:hover .dropdown_content {
+    display: block;
+    opacity: 1; /* Hiển thị dropdown */
+    transform: translateY(0); /* Đưa dropdown trở về vị trí ban đầu */
+}
+
+/* Thêm icon mũi tên xuống */
+.dropdown a {
+    position: relative;
+}
+
+.dropdown a .fa-angle-down {
+    margin-left: 5px;
+    transition: transform 0.3s ease;
+}
+
+/* Màu chữ menu chính khi hover */
+.navbar_menu a:hover {
+    color: #f0a500; /* Màu chữ vàng nhạt khi hover vào menu chính */
+}
+
+/* Phần icon bên phải (tìm kiếm và giỏ hàng) */
+.navbar_icons {
+    display: flex;
+    gap: 15px;
+}
+
+.navbar_icons a {
+    color: white;
+    font-size: 20px;
+    margin-left: 30px;
+    text-decoration: none;
+}
+
+.navbar_icons a:hover {
+    color: #f0a500;
+}
+
+/* Dropdown */
+.dropdown {
+    position: relative;
+}
+
+.dropdown_content {
+    display: none;
+    position: absolute;
+    right: 0; /* Canh phải */
+    background-color: white;
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2);
+    min-width: 220px;
+    border-radius: 8px;
+    overflow: hidden;
+    z-index: 1;
+    text-align: left;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.dropdown_content ul {
+    list-style-type: none;
+    padding: 0;
+    margin-left: -30px;
+}
+
+.dropdown_content li {
+    border-bottom: 1px solid #ddd;
+}
+
+.dropdown_content li:last-child {
+    border-bottom: none;
+}
+
+.dropdown_content li a {
+    color: #333;
+    padding: 12px 20px;
+    display: block;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    font-size: 16px;
+    font-weight: 400;
+}
+
+.dropdown_content li a:hover {
+    background-color: #f0a500;
+    color: white;
+}
+
+/* Hiển thị dropdown khi hover vào icon người dùng */
+.dropdown:hover .dropdown_content {
+    display: block;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.sub_header {
+    display: flex;
+    justify-content: space-between; /* Đặt khoảng cách giữa ảnh và văn bản */
+    align-items: center; /* Căn giữa ảnh và văn bản theo chiều dọc */
+    padding: 20px; /* Tạo khoảng cách giữa các phần tử và cạnh */
+}
+
+.sub_header_img {
+    width: 50%; /* Chiếm 50% chiều rộng cho phần ảnh */
+}
+
+.sub_header_img-main {
+    width: 100%; /* Hình ảnh sẽ chiếm toàn bộ phần container */
+    height: auto;
+    border-radius: 10px; /* Bo tròn góc ảnh */
+}
+
+.text-container {
+    width: 45%; /* Chiếm 45% chiều rộng cho phần văn bản */
+    padding-left: 20px; /* Khoảng cách giữa ảnh và văn bản */
+}
+
+.text-container h1 {
+    font-size: 2.5em;
+    margin-bottom: 10px;
+}
+
+.text-container p {
+    font-size: 1.2em;
+    color: #666;
+    line-height: 1.5;
+}
+
+ /* Main container for image and text */
+ .sub_header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 40px 60px; /* Adjust padding as needed */
+    background-color: #fff;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Add subtle shadow */
+    border-radius: 15px;
+    max-width: 1200px;
+    margin: 20px auto; /* Center the container on the page */
+}
+
+/* Styling for the text section */
+.text-container {
+    width: 50%;
+}
+
+.text-container h1 {
+    font-family: 'Dancing Script', cursive;
+    font-size: 3em;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.text-container p {
+    font-size: 1.2em;
+    color: #555;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+/* Styling for the image section */
+.sub_header_img {
+    width: 45%; /* Adjust as needed */
+}
+
+.sub_header_img-main {
+    width: 80%;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Subtle shadow for the image */
+}
+
+.grid.wide .row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh; /* Vertically centers the content */
+    background-color: #f9f9f9; /* Light background */
+}
+
+.module_left {
+    text-align: center;
+}
+
+.a-center {
+    text-align: center !important;
+}
+
+.module_left {
+    text-align: left;
+    padding-right: 30px;
+}
+
+.large_title {
+    font-family: 'Dancing Script', cursive;
+    font-size: 48px;
+    color: #f7b634; /* Màu vàng như trong ảnh */
+    margin-bottom: 10px;
+}
+
+.mini_title {
+    font-family: 'Roboto', sans-serif;
+    font-size: 24px;
+    font-weight: 500;
+    color: #333; /* Màu đen nhạt */
+    margin-bottom: 15px;
+}
+
+.day_time {
+    font-size: 16px;
+    color: #555;
+    margin-bottom: 15px;
+}
+
+.day_time b {
+    color: #000; /* Màu đen đậm */
+}
+
+.day_time a {
+    color: #f7b634;
+    text-decoration: none;
+}
+
+.day_time a:hover {
+    text-decoration: underline;
+}
+
+/* Description text */
+.module_left span {
+    font-size: 18px;
+    color: #555; /* Màu chữ nhẹ nhàng */
+    line-height: 1.6;
+}
+
+/* Right image section */
+.module_right img {
+    width: 100%;
+    border-radius: 8px;
+}
+
+
+
+
+
