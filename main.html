@@ -56,7 +56,7 @@
         </div>
 
         <div class="sub_header">
-            <div class="gird wide"></div>
+            <div class="gird wide">
                 <div class="row">
                     <div class="col c-5">
                         <div class="module_left a-center">
@@ -68,7 +68,6 @@
                                 Thứ hai đến Thứ bảy <b>8:30am - 11:00pm</b> <span class="hidden-xs">|</span> 
                                 Hotline: 
                                 <a href="tel:19006750">19006750</a>
-                                
                             </div>
                             <span>Chúng tôi đi khắp thế giới để tìm kiếm cà phê tuyệt vời. Trong quá trình đó, chúng tôi phát hiện ra những hạt đậu đặc biệt và hiếm đến nỗi chúng tôi có thể chờ đợi để mang chúng về.</span>
                         </div>
@@ -82,6 +81,107 @@
                 </div>
             </div>
         </div>
+
+        <section class="section_menu_today">
+            <div class="container">
+                <div class="heading">
+                    <h2 class="large_title">Chúng tôi là</h2>
+                    <span class="mini_title">Coffee house</span>
+                </div>
+            </div>
+
+            <div class="products">
+                <div class="row">
+                    <div class="product-list" id="product-list">
+                        <!-- Products will be inserted here by JavaScript -->
+                    </div>
+                </div>
+            </div>
+
+            <div id="pagination" class="pagination">
+                <!-- Buttons will be dynamically inserted here -->
+            </div>
+        </section>
     </div>
+
+    <script>
+        let currentPage = 0;  // Start at page 0
+        const pageSize = 10;  // Number of products per page
+
+async function loadProducts(page = 0, size = 10) {
+    try {
+        // Fetch products from API
+        const response = await fetch(`http://localhost:8080/api/v1/product/get-products?page=${page}&size=${size}`);
+        const data = await response.json();
+        
+        // Check if data is properly returned
+        if (!data || !data.content) {
+            return;
+        }
+        
+        const products = data.content;  // Actual product data
+        const productList = document.getElementById('product-list');
+        productList.innerHTML = ''; // Clear the previous content
+
+        // Loop through products and create product elements
+        products.forEach(product => {
+            const productItem = document.createElement('div');
+            productItem.classList.add('product-item');
+
+            productItem.innerHTML = `
+                <div class="product-image">
+                    <img src="${product.image}" alt="${product.name}">
+                </div>
+                <div class="product-info">
+                    <h3>${product.name}</h3>
+                    <p>Giá: ${product.price.toLocaleString('vi-VN')}₫</p>
+                </div>
+            `;
+
+            productItem.addEventListener('click', () => {
+                window.location.href = `/product/${product.productId}`; // Redirect to the product details page
+            });
+
+            productList.appendChild(productItem);
+        });
+
+        // Handle pagination controls (Next/Previous buttons)
+        updatePagination(data);
+    } catch (error) {
+        console.error('Error loading products:', error);
+    }
+}
+
+function updatePagination(data) {
+    const paginationElement = document.getElementById('pagination');
+    paginationElement.innerHTML = ''; // Clear the old pagination UI
+
+    // "Previous" button
+    const prevButton = document.createElement('button');
+    prevButton.innerText = 'Previous';
+    prevButton.disabled = data.number === 0; // Disable if it's the first page
+    prevButton.onclick = () => loadProducts(data.number - 1, pageSize);
+    paginationElement.appendChild(prevButton);
+
+    // "Next" button
+    const nextButton = document.createElement('button');
+    nextButton.innerText = 'Next';
+    nextButton.disabled = data.number >= data.totalPages - 1; // Disable if it's the last page
+    nextButton.onclick = () => loadProducts(data.number + 1, pageSize);
+    paginationElement.appendChild(nextButton);
+
+    // Log for debugging
+    console.log('Pagination:', {
+        currentPage: data.number,
+        totalPages: data.totalPages,
+    });
+
+    // Set the current page
+    currentPage = data.number;
+}
+// Load the first page when the window loads
+window.onload = () => loadProducts(currentPage, pageSize);
+
+    </script>
 </body>
 </html>
