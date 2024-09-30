@@ -24,21 +24,6 @@
     object-position: center; /* Căn chỉnh ảnh ở giữa */
 }
 
-/* Sử dụng Dancing Script cho tiêu đề */
-.header_text h1 {
-    font-size: 48px;
-    font-weight: bold;
-    font-family: 'Dancing Script', cursive; /* Áp dụng phông chữ Dancing Script */
-    color: white;
-}
-
-.header_text p {
-    font-size: 18px;
-    max-width: 600px;
-    margin: 0 auto;
-    color: white;
-    font-family: 'Roboto', sans-serif; /* Sử dụng Roboto cho phần mô tả */
-}
 
 /* Định dạng chung cho thanh navbar */
 .navbar {
@@ -215,92 +200,17 @@
     transform: translateY(0);
 }
 
-.sub_header {
-    display: flex;
-    justify-content: space-between; /* Đặt khoảng cách giữa ảnh và văn bản */
-    align-items: center; /* Căn giữa ảnh và văn bản theo chiều dọc */
-    padding: 20px; /* Tạo khoảng cách giữa các phần tử và cạnh */
-}
-
-.sub_header_img {
-    width: 50%; /* Chiếm 50% chiều rộng cho phần ảnh */
-}
-
-.sub_header_img-main {
-    width: 100%; /* Hình ảnh sẽ chiếm toàn bộ phần container */
-    height: auto;
-    border-radius: 10px; /* Bo tròn góc ảnh */
-}
-
-.text-container {
-    width: 45%; /* Chiếm 45% chiều rộng cho phần văn bản */
-    padding-left: 20px; /* Khoảng cách giữa ảnh và văn bản */
-}
-
-.text-container h1 {
-    font-size: 2.5em;
-    margin-bottom: 10px;
-}
-
-.text-container p {
-    font-size: 1.2em;
-    color: #666;
-    line-height: 1.5;
-}
-
  /* Main container for image and text */
  .sub_header {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
+    justify-content: center; /* Horizontally center */
+    align-items: center; /* Vertically center */
     padding: 40px 60px; /* Adjust padding as needed */
     background-color: #fff;
+    gap: 0px 50px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Add subtle shadow */
     border-radius: 15px;
-    max-width: 1200px;
-    margin: 20px auto; /* Center the container on the page */
-}
-
-/* Styling for the text section */
-.text-container {
-    width: 50%;
-}
-
-.text-container h1 {
-    font-family: 'Dancing Script', cursive;
-    font-size: 3em;
-    color: #333;
-    margin-bottom: 20px;
-}
-
-.text-container p {
-    font-size: 1.2em;
-    color: #555;
-    line-height: 1.6;
-    margin-bottom: 20px;
-}
-
-/* Styling for the image section */
-.sub_header_img {
-    width: 45%; /* Adjust as needed */
-}
-
-.sub_header_img-main {
-    width: 80%;
-    border-radius: 10px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Subtle shadow for the image */
-}
-
-.grid.wide .row {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-height: 100vh; /* Vertically centers the content */
-    background-color: #f9f9f9; /* Light background */
-}
-
-.module_left {
-    text-align: center;
+    text-align: center; /* Ensures the text is centered within its own container */
 }
 
 .a-center {
@@ -309,14 +219,14 @@
 
 .module_left {
     text-align: left;
-    padding-right: 30px;
+    padding: 150px 0 120px 0;
 }
 
 .large_title {
     font-family: 'Dancing Script', cursive;
     font-size: 48px;
     color: #f7b634; /* Màu vàng như trong ảnh */
-    margin-bottom: 10px;
+    margin-bottom: 20px;
 }
 
 .mini_title {
@@ -324,13 +234,13 @@
     font-size: 24px;
     font-weight: 500;
     color: #333; /* Màu đen nhạt */
-    margin-bottom: 15px;
+    margin: 15px auto;
 }
 
 .day_time {
     font-size: 16px;
     color: #555;
-    margin-bottom: 15px;
+    margin-bottom: 30px;
 }
 
 .day_time b {
@@ -348,7 +258,7 @@
 
 /* Description text */
 .module_left span {
-    font-size: 18px;
+    font-size: 16px;
     color: #555; /* Màu chữ nhẹ nhàng */
     line-height: 1.6;
 }
@@ -357,6 +267,7 @@
 .module_right img {
     width: 100%;
     border-radius: 8px;
+    padding: 60px 0 120px 0;
 }
 
 

@@ -6,7 +6,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    height: 100vh; /*chiếm toàn bộ chiều cao của của sổ*/
 }
 
 div {
@@ -23,13 +23,6 @@ form {
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     width: 350px;
     text-align: left;
-}
-
-.input-container {
-    display: flex;
-    flex-direction: column;
-    align-items: stretch;
-    width: 100%;
 }
 
 input[type="text"],
@@ -78,22 +71,6 @@ p.register-link a {
 
 p.register-link a:hover {
     text-decoration: underline;
-}
-
-button {
-    width: 100%;
-    padding: 12px;
-    background-color: #e7b45a;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    font-size: 18px;
-    cursor: pointer;
-    transition: background-color 0.3s ease-in-out;
-}
-
-button:hover {
-    background-color: #e7b45a;
 }
 
 p#serverResponse {
