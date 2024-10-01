@@ -1,0 +1,116 @@
+.header_1 {
+    position: relative;
+    width: 100%;
+    height: 10%;
+}
+
+.product-details {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center; /* Đảm bảo căn giữa theo chiều dọc */
+    padding: 40px 60px;
+    background-color: #f5f2eb;
+    gap: 50px; /* Khoảng cách giữa các phần tử */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    border-radius: 15px;
+    text-align: center;
+}
+
+.module_left_1 img {
+    width: 75%;
+    border-radius: 8px;
+    padding: 60px 0 70px 0;
+}
+
+.module_right_1 {
+    display: flex;
+    flex-direction: column; /* Sắp xếp các phần tử trong module theo chiều dọc */
+    justify-content: center; /* Căn giữa theo chiều dọc */
+    align-items: center; /* Căn giữa theo chiều ngang */
+    text-align: left;
+    padding: 20px;
+    margin-top: 150px;
+    margin-right: 150px;
+}
+
+.purchase {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px; /* Khoảng cách giữa các nút và input */
+    margin-bottom: 20px;
+}
+
+.purchase button {
+    font-size: 24px; /* Tăng kích thước chữ cho nút */
+    width: 50px;
+    height: 50px;
+    background-color: #f0f0f0; /* Màu nền sáng cho nút */
+    border: 2px solid #ccc;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.purchase button:hover {
+    background-color: #ffbf00; /* Đổi màu khi hover */
+}
+
+.purchase input {
+    font-size: 24px; /* Tăng kích thước chữ trong ô input */
+    width: 70px; /* Tăng chiều rộng của input */
+    text-align: center; /* Canh giữa chữ số */
+    border: 2px solid #ccc;
+    border-radius: 8px;
+    padding: 5px;
+    background-color: #fff;
+    color: #333;
+}
+
+button.order {
+    font-size: 20px; /* Tăng kích thước chữ cho nút "Đặt Hàng" */
+    padding: 15px 30px; /* Tăng padding để nút to hơn */
+    background-color: #ffbf00; /* Màu nền nổi bật */
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+button.order:hover {
+    background-color: white; /* Đổi màu khi hover */
+    transform: scale(1.05); /* Phóng to nhẹ khi hover */
+}
+
+button.order:active {
+    transform: scale(1); /* Trở lại kích thước ban đầu khi nhấn nút */
+}
+
+.description {
+    margin-top: 20px; /* Khoảng cách từ các phần tử trên */
+    padding: 20px; /* Padding cho phần mô tả */
+}
+
+.description h2{
+    font-size: 5rem;
+    color: #ffbf00;
+    margin: 20px auto;
+    font-family: 'Dancing Script', cursive;
+}
+
+.title {
+    font-size: 2rem; /* Kích thước chữ cho tiêu đề mô tả */
+    color: #333; /* Màu chữ cho tiêu đề */
+    margin-bottom: 10px; /* Khoảng cách dưới tiêu đề */
+    font-weight: bold; /* Làm đậm chữ */
+}
+
+.description p {
+    font-size: 1.6rem; /* Kích thước chữ cho mô tả sản phẩm */
+    line-height: 1.6; /* Khoảng cách dòng */
+    color: #666; /* Màu chữ nhẹ nhàng */
+    margin: 0; /* Bỏ margin */
+    padding: 0; /* Bỏ padding */
+}

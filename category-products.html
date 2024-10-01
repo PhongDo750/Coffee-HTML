@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coffee House</title>
+    <link rel="shortcut icon" href="./assets/img/logo.webp" type="">
+    <link rel="stylesheet" href="./assets/css/main.css">
+    <link rel="stylesheet" href="./assets/css/base.css">
+    <link rel="stylesheet" href="./assets/css/grid.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&amp;display=swap&amp;subset=vietnamese" rel="stylesheet">
+    <link rel="stylesheet" href="./assets/icon/fontawesome-free-6.2.0-web/css/all.css">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="main">
+        <nav class="navbar">
+            <div class="navbar_logo">
+                <img src="./assets/img/logo.webp" alt="Logo">
+            </div>
+            <ul class="navbar_menu">
+                <li><a href="#">Trang chủ</a></li>
+                <li><a href="#">Giới thiệu</a></li>
+                <li class="dropdown">
+                    <a href="#">Sản phẩm</a>
+                    <ul class="dropdown_content">
+                        <!--các sản phẩm sẽ hiện ở đây-->
+                    </ul>
+                </li>
+                <li><a href="#">Dịch vụ</a></li>
+                <li><a href="#">Tin tức</a></li>
+                <li><a href="#">Liên hệ</a></li>
+            </ul>
+            <div class="navbar_icons">
+                <div class="dropdown">
+                    <a href="#"><i class="fa-solid fa-user"></i></a>
+                    <div class="dropdown_content">
+                        <ul>
+                            <li><a href="information-user.html">Thông tin cá nhân</a></li>
+                            <li><a href="/logout">Đăng xuất</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <a href="#"><i class="fa fa-search"></i></a>
+                <a href="#"><i class="fa fa-shopping-cart"></i></a>
+            </div>
+        </nav>
+        <section class="section_menu_today">
+            <h1 class="name-category"></h1>
+            <div class="products">
+                <div class="row">
+                    <div class="product-list" id="product-list">
+                        <!-- Products will be inserted here by JavaScript -->
+                    </div>
+                </div>
+            </div>
+    
+            <div id="pagination" class="pagination">
+                <!-- Buttons will be dynamically inserted here -->
+            </div>
+        </section>
+    </div>
+
+    <script src="./assets/js/category-products.js"></script>
+</body>
+</html>

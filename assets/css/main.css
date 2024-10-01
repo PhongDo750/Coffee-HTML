@@ -65,51 +65,42 @@
     transition: color 0.3s ease;
 }
 
-/* Dropdown */
+/* Mặc định ẩn danh mục con */
 .dropdown_content {
-    display: none;
     position: absolute;
     background-color: white;
-    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2); /* Tạo đổ bóng mềm mại */
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2);
     min-width: 220px;
-    border-radius: 8px; /* Bo tròn góc cho dropdown */
+    border-radius: 8px;
     overflow: hidden;
     z-index: 1;
-    text-align: left;
-    opacity: 0; /* Ban đầu dropdown ẩn */
-    transform: translateY(10px); /* Tạo hiệu ứng chuyển đổi vị trí */
-    transition: opacity 0.3s ease, transform 0.3s ease; /* Hiệu ứng mở dropdown mượt */
+    opacity: 0; /* Ban đầu ẩn danh mục con */
+    transform: translateY(10px); /* Hiệu ứng vị trí */
+    transition: opacity 0.3s ease, transform 0.3s ease; /* Hiệu ứng mượt */
+    pointer-events: none; /* Vô hiệu hóa tương tác khi ẩn */
 }
 
-.dropdown_content li {
-    border-bottom: 1px solid #ddd; /* Đường viền nhẹ giữa các mục */
-}
-
-.dropdown_content li:last-child {
-    border-bottom: none; /* Không có viền ở mục cuối */
-}
-
-/* Màu chữ và style mặc định cho mục trong dropdown */
+/* Định dạng mục con trong dropdown */
 .dropdown_content li a {
-    color: #333; /* Màu chữ mặc định cho dropdown */
+    color: #333;
     padding: 12px 20px;
     display: block;
-    transition: background-color 0.3s ease, color 0.3s ease; /* Hiệu ứng hover mượt */
     font-size: 16px;
     font-weight: 400;
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-/* Khi hover vào mục con trong dropdown */
+/* Hiệu ứng khi hover vào mục con */
 .dropdown_content li a:hover {
-    background-color: #f0a500; /* Nền vàng nhạt khi hover */
-    color: white; /* Chữ trắng khi hover */
+    background-color: #f0a500;
+    color: white;
 }
 
-/* Hiển thị dropdown khi hover vào mục chính */
+/* Khi hover vào mục "Sản phẩm", hiển thị danh mục con */
 .dropdown:hover .dropdown_content {
-    display: block;
-    opacity: 1; /* Hiển thị dropdown */
-    transform: translateY(0); /* Đưa dropdown trở về vị trí ban đầu */
+    opacity: 1; /* Hiển thị danh mục con */
+    transform: translateY(0); /* Đưa về vị trí ban đầu */
+    pointer-events: auto; /* Kích hoạt tương tác khi hiển thị */
 }
 
 /* Thêm icon mũi tên xuống */
@@ -226,7 +217,7 @@
     font-family: 'Dancing Script', cursive;
     font-size: 48px;
     color: #f7b634; /* Màu vàng như trong ảnh */
-    margin-bottom: 20px;
+    margin-bottom: 30px;
 }
 
 .mini_title {
@@ -265,6 +256,13 @@
 
 /* Right image section */
 .module_right img {
+    width: 100%;
+    border-radius: 8px;
+    padding: 60px 0 120px 0;
+}
+
+/* Right image section */
+.module_left img {
     width: 100%;
     border-radius: 8px;
     padding: 60px 0 120px 0;
@@ -369,4 +367,15 @@
 .pagination button:disabled {
     background-color: #ccc;
     cursor: not-allowed;
+}
+
+.name-category {
+    font-size: 4.5rem; /* Kích thước chữ */
+    text-align: center; /* Căn giữa */
+    font-family: 'Dancing Script', cursive; /* Font chữ đẹp */
+    color: #f7b634; /* Màu chữ */
+    margin: 30px 0 20px 0; /* Khoảng cách trên và dưới */
+    text-transform: uppercase; /* Viết hoa toàn bộ chữ */
+    letter-spacing: 1px; /* Khoảng cách giữa các ký tự */
+    padding: 10px; /* Khoảng cách bên trong */
 }
