@@ -155,6 +155,46 @@ totalPages: data.totalPages,
 currentPage = data.number;
 }
 
+async function loadCategories() {
+    try {
+        const response = await fetch('http://localhost:8080/api/v1/category/get-categories');
+        const categories = await response.json();
+
+        // Kiểm tra dữ liệu trả về
+        if (!categories || categories.length === 0) {
+            console.error('Invalid category data:', categories);
+            return;
+        }
+
+        const dropdownContent = document.querySelector('.dropdown_content');
+        dropdownContent.innerHTML = ''; // Xóa nội dung cũ
+
+        // Duyệt qua các danh mục và tạo các phần tử <li> mới
+        categories.forEach(category => {
+            const li = document.createElement('li');
+            li.innerHTML = `<a href="#">${category.name}</a>`; // Không trỏ trực tiếp vào href
+            const anchorTag = li.querySelector('a'); // Lấy thẻ <a> bên trong li
+            anchorTag.addEventListener('click', (event) => {
+                event.preventDefault(); // Ngăn hành vi mặc định của thẻ <a> (không chuyển hướng ngay)
+                window.location.href = `/category-products.html?categoryId=${category.categoryId}`; // Chuyển hướng đến trang chứa sản phẩm của category
+            });
+            dropdownContent.appendChild(li);
+        });
+
+        // Hiển thị dropdown khi hover vào mục "Sản phẩm"
+        const dropdown = document.querySelector('.dropdown');
+        dropdown.addEventListener('mouseenter', () => {
+            dropdownContent.style.display = 'block'; // Hiển thị khi hover vào
+        });
+
+        dropdown.addEventListener('mouseleave', () => {
+            dropdownContent.style.display = 'none'; // Ẩn khi không còn hover
+        });
+    } catch (error) {
+        console.error('Error loading categories:', error);
+    }
+}
+
 // Hàm lấy giá trị query parameter từ URL
 function getQueryParameter(param) {
     const urlParams = new URLSearchParams(window.location.search);
@@ -164,6 +204,7 @@ function getQueryParameter(param) {
 window.onload = () => {
     const productId = getQueryParameter('productId'); // Lấy productId từ query parameter
     if (productId) {
+        loadCategories()
         loadProductDetails(productId);
         loadProducts(currentPage, pageSize)
     } else {
