@@ -1,0 +1,119 @@
+.header_1 {
+    position: relative;
+    width: 100%;
+    height: 10%;
+}
+
+.cart-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    animation: fadeIn 0.5s ease;
+}
+
+.cart-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+.cart-table thead th {
+    background-color: #f0f0f0;
+    padding: 15px;
+    text-align: center; /* Center align the header */
+    font-weight: bold;
+    border-bottom: 2px solid #ddd;
+    font-size: 18px;
+}
+
+.cart-table tbody td {
+    padding: 15px;
+    border-bottom: 1px solid #ddd;
+    font-size: 16px;
+    text-align: center; /* Center align the content */
+    vertical-align: middle; /* Vertically center align content */
+}
+
+.cart-table img {
+    width: 80px;
+    height: 80px;
+    border-radius: 8px;
+}
+
+.cart-table .remove-button {
+    display: inline-block;
+    padding: 8px 12px;
+    background-color: #ff6666;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin: 0 auto; /* Center the button */
+}
+
+.cart-table .remove-button:hover {
+    background-color: #ff4c4c; /* Change color on hover */
+}
+
+.cart-table input.quantity-input {
+    width: 60px;
+    padding: 6px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    text-align: center;
+}
+
+.cart-table td {
+    vertical-align: middle;
+}
+
+.cart-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.cart-table td:nth-child(5) {
+    font-weight: bold;
+    color: #333;
+}
+
+/* Set specific width for the checkbox column */
+.cart-table td:first-child,
+.cart-table th:first-child {
+    width: 50px;
+    text-align: center; /* Center the checkbox */
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.order-button {
+    display: inline-block;
+    padding: 12px 20px;
+    background-color: #4CAF50; /* Màu xanh cho nút */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 20px; /* Khoảng cách trên nút */
+    text-align: center;
+    width: 150px;
+}
+
+.order-button:hover {
+    background-color: #45a049; /* Thay đổi màu khi hover */
+}
+
