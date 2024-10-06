@@ -1,0 +1,79 @@
+.header_1 {
+    position: relative;
+    width: 100%;
+    height: 10%;
+}
+
+/* Phần thông tin người dùng */
+#user-info {
+    background-color: #f9f9f9; /* Màu nền nhạt để tạo sự nhẹ nhàng */
+    padding: 50px;
+    border-radius: 15px;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1); 
+    text-align: center;
+    max-width: 800px;
+    margin: 50px auto;
+}
+
+/* Tiêu đề của thông tin người dùng */
+.user-info h1 {
+    font-size: 3.5em; 
+    color: #333;
+    margin-bottom: 20px;
+    font-family: 'Dancing Script', cursive;
+    letter-spacing: 1px; 
+}
+
+/* Nhãn cho các input */
+.user-detail label {
+    font-size: 1.7em;
+    color: #666;
+    margin-bottom: 12px;
+    display: block; /* Hiển thị label trên input */
+    text-align: left;
+    font-family: 'Roboto', sans-serif;
+    margin-top: 20px;
+}
+
+/* Các input */
+.user-detail input[type="text"],
+.user-detail input[type="email"] {
+    width: 100%;
+    padding: 15px;
+    font-size: 1.5em;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    font-family: 'Roboto', sans-serif;
+    box-sizing: border-box;
+}
+
+/* Avatar của người dùng */
+.user-avatar img {
+    width: 120px; 
+    height: 120px;
+    border-radius: 50%; 
+    object-fit: cover;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Nút cập nhật thông tin */
+.btn-update {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 12px 30px;
+    background-color: #ff6600; 
+    color: #fff;
+    text-decoration: none;
+    border-radius: 8px; 
+    transition: background-color 0.3s ease, box-shadow 0.3s ease; 
+    font-size: 1.5em;
+    font-weight: 500; 
+    cursor: pointer;
+}
+
+.btn-update:hover {
+    background-color: #e65c00; 
+    box-shadow: 0 4px 12px rgba(255, 102, 0, 0.3); 
+}

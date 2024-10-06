@@ -53,6 +53,12 @@ th, td {
     font-size: 15px;
 }
 
+.product_image {
+    width: 80px;
+    height: 80px;
+    border-radius: 8px;
+}
+
 #confirmOrderButton {
     padding: 10px 20px;
     background-color: #ffbe33;

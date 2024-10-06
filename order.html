@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Thông tin người dùng - Coffee House</title>
+    <title>Coffee House</title>
     <link rel="shortcut icon" href="./assets/img/logo.webp" type="">
-    <link rel="stylesheet" href="./assets/css/main.css">
     <link rel="stylesheet" href="./assets/css/base.css">
     <link rel="stylesheet" href="./assets/css/grid.css">
-    <link rel="stylesheet" href="./assets/css/information-user.css">
+    <link rel="stylesheet" href="./assets/css/main.css">
+    <link rel="stylesheet" href="./assets/css/order.css">
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&amp;display=swap&amp;subset=vietnamese" rel="stylesheet">
     <link rel="stylesheet" href="./assets/icon/fontawesome-free-6.2.0-web/css/all.css">
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet">
@@ -22,14 +22,11 @@
                 </div>
                 <ul class="navbar_menu">
                     <li><a href="main.html">Trang chủ</a></li>
-                    <li><a href="#">Giới thiệu</a></li>
+                    <li><a href="#introduce">Giới thiệu</a></li>
                     <li class="dropdown">
-                        <a href="#">Sản phẩm</a>
+                        <a href="#product">Sản phẩm</a>
                         <ul class="dropdown_content">
-                            <li><a href="#">Cà phê thế giới</a></li>
-                            <li><a href="#">Cà phê pha Việt</a></li>
-                            <li><a href="#">Cà phê cảm hứng</a></li>
-                            <li><a href="#">Đồ uống</a></li>
+                            <!--các sản phẩm sẽ hiện ở đây-->
                         </ul>
                     </li>
                     <li><a href="#">Dịch vụ</a></li>
@@ -53,21 +50,29 @@
             </nav>
         </div>
 
-      
-        <!-- Nội dung chính hiển thị thông tin người dùng -->
-        <div class="sub_header">
-            <div class="grid wide">
-                <div class="row">
-                    <div class="col c-12">
-                        <div id="user-info">
-
-                        </div>
-                    </div>
-                </div>
+        <div class="order-state-tabs">
+            <button class="tab-button" data-state="PENDING_PAYMENT" onclick="getOrdersByState('PENDING_PAYMENT')">Chờ thanh toán</button>
+            <button class="tab-button" data-state="WAITING_DELIVERY" onclick="getOrdersByState('WAITING_DELIVERY')">Chờ giao hàng</button>
+            <button class="tab-button" data-state="COMPLETED" onclick="getOrdersByState('COMPLETED')">Hoàn thành</button>
+            <button class="tab-button" data-state="CANCELED" onclick="getOrdersByState('CANCELED')">Đã hủy</button>
+        </div>
+        
+        <div id="order-list-header">
+            <div class="product-header">
+                <div class="product-header-cell">Image</div>
+                <div class="product-header-cell">Product Name</div>
+                <div class="product-header-cell">Price</div>
+                <div class="product-header-cell">Quantity</div>
+                <div class="product-header-cell">Total Price</div>
             </div>
         </div>
+        <!-- Orders will be displayed here -->
+        <div id="order-list">
+            <!-- Content populated dynamically -->
+        </div>
     </div>
-    <script src="./assets/js/information-user.js"></script> 
-    <script src="./assets/js/log-out.js"></script>   
- </body>
- </html>
+
+    <script src="./assets/js/main.js"></script>
+    <script src="./assets/js/order.js"></script>
+</body>
+</html>
