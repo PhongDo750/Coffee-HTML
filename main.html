@@ -14,7 +14,7 @@
 </head>
 <body>
     <div class="main">
-        <div class="header">
+        <div class="header" id="main">
             <div class="header_img">
                 <img src="/assets/img/slider_1.webp" alt="" class="header_img-main">
             </div>
@@ -24,15 +24,12 @@
                     <img src="./assets/img/logo.webp" alt="Logo">
                 </div>
                 <ul class="navbar_menu">
-                    <li><a href="#">Trang chủ</a></li>
-                    <li><a href="#">Giới thiệu</a></li>
+                    <li><a href="#main">Trang chủ</a></li>
+                    <li><a href="#introduce">Giới thiệu</a></li>
                     <li class="dropdown">
-                        <a href="#">Sản phẩm</a>
+                        <a href="#product">Sản phẩm</a>
                         <ul class="dropdown_content">
-                            <li><a href="#">Cà phê thế giới</a></li>
-                            <li><a href="#">Cà phê pha Việt</a></li>
-                            <li><a href="#">Cà phê cảm hứng</a></li>
-                            <li><a href="#">Đồ uống</a></li>
+                            <!--các sản phẩm sẽ hiện ở đây-->
                         </ul>
                     </li>
                     <li><a href="#">Dịch vụ</a></li>
@@ -44,18 +41,19 @@
                         <a href="#"><i class="fa-solid fa-user"></i></a>
                         <div class="dropdown_content">
                             <ul>
+                                <li><a href="order.html">Đơn mua</a></li>
                                 <li><a href="information-user.html">Thông tin cá nhân</a></li>
-                                <li><a href="/logout">Đăng xuất</a></li>
+                                <li><a href="login.html" id="logout-link">Đăng xuất</a></li>
                             </ul>
                         </div>
                     </div>
                     <a href="#"><i class="fa fa-search"></i></a>
-                    <a href="#"><i class="fa fa-shopping-cart"></i></a>
+                    <a href="cart.html"><i class="fa fa-shopping-cart"></i></a>
                 </div>
             </nav>
         </div>
 
-        <div class="sub_header">
+        <div class="sub_header" id="introduce">
             <div class="gird wide">
                 <div class="row">
                     <div class="col c-5">
@@ -82,7 +80,7 @@
             </div>
         </div>
 
-        <section class="section_menu_today">
+        <section class="section_menu_today" id="product">
             <div class="container">
                 <div class="heading">
                     <h2 class="large_title">Chúng tôi là</h2>
@@ -96,120 +94,102 @@
                         <!-- Products will be inserted here by JavaScript -->
                     </div>
                 </div>
-            </div>
-
-            <div id="pagination" class="pagination">
-                <!-- Buttons will be dynamically inserted here -->
+                <div id="pagination" class="pagination">
+                    <!-- Buttons will be dynamically inserted here -->
+                </div>
             </div>
         </section>
 
         <div class="section_hours_book form_contact_footer">
-            <div class="row">
-                <div class="col c-5">
-                    <div class="module_left a-center">
-                        <div class="heading hd1">
-                            <h2 class="large_title">Giờ mở cửa</h2>
-                        </div>
-                        <div class="content_hour">
-                            <p class="option_1">Thứ 2 - Thứ 6 hàng tuần</p>
-                            <span>7am - 11am</span><br>
-                            <span>11am - 10pm</span>
-                            <p class="option_2">Thứ 7, Chủ nhật hàng tuần</p>
-                            <span>8am - 1 am</span><br>
-                            <span>11am - 9pm</span>
-                        </div>
-                        <div class="hotline_hour">
-                            <div class="sdt">Số điện thoại</div>
-                            <a href="tel:19006750">19006750</a>
+            <div class="gird wide">
+                <div class="row">
+                    <div class="col c-5">
+                        <div class="module_left a-center">
+                            <div class="heading hd1">
+                                <h2 class="large_title">Giờ mở cửa</h2>
+                            </div>
+                            <div class="content_hour">
+                                <p class="option_1">Thứ 2 - Thứ 6 hàng tuần</p>
+                                <span>7am - 11am</span><br>
+                                <span>11am - 10pm</span>
+                                <p class="option_2">Thứ 7, Chủ nhật hàng tuần</p>
+                                <span>8am - 1 am</span><br>
+                                <span>11am - 9pm</span>
+                            </div>
+                            <div class="hotline_hour">
+                                <div class="sdt">Số điện thoại</div>
+                                <a href="tel:19006750">19006750</a>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="col c-7">
-                    <div class="module_right a-center">
-                        <img src="//bizweb.dktcdn.net/100/346/521/themes/894784/assets/banner-hours-book.png?1664353170155" alt="Coffee House">
+                    <div class="col c-7">
+                        <div class="module_right a-center size_img">
+                            <img src="//bizweb.dktcdn.net/100/346/521/themes/894784/assets/banner-hours-book.png?1664353170155" alt="Coffee House">
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
+        <footer class="footer-section">
+            <div class="grid wide">
+                <div class="row">
+                    <div class="col l-4 m-4 c-12 common-margin">
+                        <div class="footer-contact">
+                            <h6 class="footer-contact__heading">Liên hệ với chúng tôi</h6>
+                            <div class="footer-contact__link">
+                                <a href="#" class="footer-contact__link-item">
+                                    <i class="fa-solid fa-location-dot"></i>
+                                    <span>266 Đội Cấn, phường Liễu Giai, Hà Nội</span>
+                                </a>
+                                <a href="#" class="footer-contact__link-item">
+                                    <i class="fa-solid fa-phone"></i>
+                                    <span>19006750</span>
+                                </a>
+                                <a href="#" class="footer-contact__link-item">
+                                    <i class="fa-solid fa-envelope"></i>
+                                    <span>sapo.theme@gmail.com</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
         
-    <script>
-        let currentPage = 0;  // Start at page 0
-        const pageSize = 10;  // Number of products per page
-
-async function loadProducts(page = 0, size = 10) {
-    try {
-        // Fetch products from API
-        const response = await fetch(`http://localhost:8080/api/v1/product/get-products?page=${page}&size=${size}`);
-        const data = await response.json();
+                    <div class="col l-4 m-4 c-12 common-margin">
+                        <div class="footer-detail">
+                            <a href="#" class="footer-logo">The Coffee House</a>
+                            <p class="footer-detail__paragraph">Rất hân hạnh được phục vụ quý khách</p>
+                            <div class="footer-detail__social">
+                                <a href="#" class="footer-detail__social-link">
+                                    <i class="fa-brands fa-facebook"></i>
+                                </a>
+                                <a href="#" class="footer-detail__social-link">
+                                    <i class="fa-brands fa-twitter"></i>
+                                </a>
+                                <a href="#" class="footer-detail__social-link">
+                                    <i class="fa-brands fa-linkedin"></i>
+                                </a>
+                                <a href="#" class="footer-detail__social-link">
+                                    <i class="fa-brands fa-instagram"></i>
+                                </a>
+                                <a href="#" class="footer-detail__social-link">
+                                    <i class="fa-brands fa-pinterest"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
         
-        // Check if data is properly returned
-        if (!data || !data.content) {
-            return;
-        }
-        
-        const products = data.content;  // Actual product data
-        const productList = document.getElementById('product-list');
-        productList.innerHTML = ''; // Clear the previous content
-
-        // Loop through products and create product elements
-        products.forEach(product => {
-            const productItem = document.createElement('div');
-            productItem.classList.add('product-item');
-
-            productItem.innerHTML = `
-                <div class="product-image">
-                    <img src="${product.image}" alt="${product.name}">
+                    <div class="col l-4 m-4 c-12 common-margin">
+                        <div class="footer-time">
+                            <h4>Giờ mở cửa</h4>
+                            <p>Thứ 2 - Thứ 6: 07:00 - 22:00</p>
+                            <p>Thứ 7, Chủ nhật: 08:00 - 21:00</p>
+                        </div>
+                    </div>
                 </div>
-                <div class="product-info">
-                    <h3>${product.name}</h3>
-                    <p>Giá: ${product.price.toLocaleString('vi-VN')}₫</p>
-                </div>
-            `;
+            </div>
+        </footer>
+    </div>
 
-            productItem.addEventListener('click', () => {
-                window.location.href = `/product/${product.productId}`; // Redirect to the product details page
-            });
-
-            productList.appendChild(productItem);
-        });
-
-        // Handle pagination controls (Next/Previous buttons)
-        updatePagination(data);
-    } catch (error) {
-        console.error('Error loading products:', error);
-    }
-}
-
-function updatePagination(data) {
-    const paginationElement = document.getElementById('pagination');
-    paginationElement.innerHTML = ''; // Clear the old pagination UI
-
-    // "Previous" button
-    const prevButton = document.createElement('button');
-    prevButton.innerText = 'Previous';
-    prevButton.disabled = data.number === 0; // Disable if it's the first page
-    prevButton.onclick = () => loadProducts(data.number - 1, pageSize);
-    paginationElement.appendChild(prevButton);
-
-    // "Next" button
-    const nextButton = document.createElement('button');
-    nextButton.innerText = 'Next';
-    nextButton.disabled = data.number >= data.totalPages - 1; // Disable if it's the last page
-    nextButton.onclick = () => loadProducts(data.number + 1, pageSize);
-    paginationElement.appendChild(nextButton);
-
-    // Log for debugging
-    console.log('Pagination:', {
-        currentPage: data.number,
-        totalPages: data.totalPages,
-    });
-
-    // Set the current page
-    currentPage = data.number;
-}
-// Load the first page when the window loads
-window.onload = () => loadProducts(currentPage, pageSize);
-
-    </script>
+    <script src="./assets/js/main.js"></script>
+    <script src="./assets/js/log-out.js"></script>   
 </body>
 </html>
