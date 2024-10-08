@@ -65,51 +65,42 @@
     transition: color 0.3s ease;
 }
 
-/* Dropdown */
+/* Mặc định ẩn danh mục con */
 .dropdown_content {
-    display: none;
     position: absolute;
     background-color: white;
-    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2); /* Tạo đổ bóng mềm mại */
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2);
     min-width: 220px;
-    border-radius: 8px; /* Bo tròn góc cho dropdown */
+    border-radius: 8px;
     overflow: hidden;
     z-index: 1;
-    text-align: left;
-    opacity: 0; /* Ban đầu dropdown ẩn */
-    transform: translateY(10px); /* Tạo hiệu ứng chuyển đổi vị trí */
-    transition: opacity 0.3s ease, transform 0.3s ease; /* Hiệu ứng mở dropdown mượt */
+    opacity: 0; /* Ban đầu ẩn danh mục con */
+    transform: translateY(10px); /* Hiệu ứng vị trí */
+    transition: opacity 0.3s ease, transform 0.3s ease; /* Hiệu ứng mượt */
+    pointer-events: none; /* Vô hiệu hóa tương tác khi ẩn */
 }
 
-.dropdown_content li {
-    border-bottom: 1px solid #ddd; /* Đường viền nhẹ giữa các mục */
-}
-
-.dropdown_content li:last-child {
-    border-bottom: none; /* Không có viền ở mục cuối */
-}
-
-/* Màu chữ và style mặc định cho mục trong dropdown */
+/* Định dạng mục con trong dropdown */
 .dropdown_content li a {
-    color: #333; /* Màu chữ mặc định cho dropdown */
+    color: #333;
     padding: 12px 20px;
     display: block;
-    transition: background-color 0.3s ease, color 0.3s ease; /* Hiệu ứng hover mượt */
     font-size: 16px;
     font-weight: 400;
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-/* Khi hover vào mục con trong dropdown */
+/* Hiệu ứng khi hover vào mục con */
 .dropdown_content li a:hover {
-    background-color: #f0a500; /* Nền vàng nhạt khi hover */
-    color: white; /* Chữ trắng khi hover */
+    background-color: #f0a500;
+    color: white;
 }
 
-/* Hiển thị dropdown khi hover vào mục chính */
+/* Khi hover vào mục "Sản phẩm", hiển thị danh mục con */
 .dropdown:hover .dropdown_content {
-    display: block;
-    opacity: 1; /* Hiển thị dropdown */
-    transform: translateY(0); /* Đưa dropdown trở về vị trí ban đầu */
+    opacity: 1; /* Hiển thị danh mục con */
+    transform: translateY(0); /* Đưa về vị trí ban đầu */
+    pointer-events: auto; /* Kích hoạt tương tác khi hiển thị */
 }
 
 /* Thêm icon mũi tên xuống */
@@ -226,7 +217,7 @@
     font-family: 'Dancing Script', cursive;
     font-size: 48px;
     color: #f7b634; /* Màu vàng như trong ảnh */
-    margin-bottom: 20px;
+    margin-bottom: 30px;
 }
 
 .mini_title {
@@ -270,6 +261,13 @@
     padding: 60px 0 120px 0;
 }
 
+/* Right image section */
+.module_left img {
+    width: 100%;
+    border-radius: 8px;
+    padding: 60px 0 120px 0;
+}
+
 .section_menu_today {
     background-repeat: no-repeat;
     background-position: center;
@@ -304,10 +302,10 @@
 
 .product-list {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* This ensures a grid */
-    gap: 20px; /* Space between items */
-    max-width: 1200px; /* Limit the container width */
-    margin: 35px auto; /* Center the grid */
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); 
+    gap: 20px; 
+    max-width: 1200px; 
+    margin: 35px auto; 
     
 }
 
@@ -371,8 +369,19 @@
     cursor: not-allowed;
 }
 
+.name-category {
+    font-size: 4.5rem; 
+    text-align: center; 
+    font-family: 'Dancing Script', cursive; 
+    color: #f7b634; 
+    margin: 30px 0 20px 0;
+    text-transform: uppercase; 
+    letter-spacing: 1px; 
+    padding: 10px; 
+}
+
 .section_hours_book {
-    margin-top: 105px;
+    margin-top: 200px;
     padding: 110px 0;
     height: 100vh; 
     width: 100%; 
@@ -380,8 +389,6 @@
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
-    display: flex; 
-    justify-content: space-between; 
     padding: 40px; 
 }
 
@@ -417,7 +424,7 @@
 }
 
 .hd1 h2 {
-    animation: bounce 2s infinite; /* Áp dụng hiệu ứng bounce */
+    animation: bounce 2s infinite; 
 }
 
 
@@ -452,10 +459,98 @@
     text-align: center;
 }
 
-.module_right img {
-    width: 100%; 
-    max-width: none; 
-    height: auto; 
-    display: flex; 
-    justify-content: flex-end;
+.size_img img {
+    width: 85%;
+}
+
+.footer-section {
+    padding: 70px 0 45px 0;
+    background-color: #222831;
+    text-align: center;
+    color: var(--white-color);
+}
+
+.footer-time h4,
+.footer-contact__heading {
+    font-size: 2.8rem;
+    font-family: 'Dancing Script', cursive;
+    line-height: 2.8rem;
+    margin-bottom: 20px;
+    font-weight: 500;
+}
+
+.footer-contact__link {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.footer-contact__link-item {
+    text-decoration: none;
+    color: var(--white-color);
+    margin: 5px 0;
+    font-size: 1.6rem;
+}
+
+.footer-contact__link-item:hover {
+    color: var(--primary-color);
+}
+
+.footer-contact__link-item i {
+    padding: 0 5px;
+}
+
+.footer-logo {
+    font-size: 3.8rem;
+    font-family: 'Dancing Script', cursive;
+    text-decoration: none;
+    color: var(--white-color);
+    line-height: 3.8rem;
+    margin-bottom: 20px;
+    display: block;
+}
+
+.footer-detail__paragraph {
+    font-size: 1.6rem;
+    line-height: 2.4rem;
+    color: #dbdbdb;
+    margin-bottom: 16px;
+}
+
+.footer-detail__social {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.footer-detail__social-link {
+    text-decoration: none;
+    background-color: var(--white-color);
+    border-radius: 100%;
+    font-size: 1.8rem;
+    height: 30px;
+    width: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #222831;
+    margin: 0 2.5px;
+}
+
+.footer-detail__social-link:hover {
+    color: var(--primary-color);
+}
+
+.footer-time p {
+    font-size: 1.6rem;
+    line-height: 2.4rem;
+    color: #dbdbdb;
+    margin-bottom: 16px;
+}
+
+.footer-info {
+    text-align: center;
+    margin-top: 25px;
+    font-size: 1.8rem;
 }
