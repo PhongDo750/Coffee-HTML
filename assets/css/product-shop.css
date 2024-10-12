@@ -1,0 +1,677 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+}
+
+.navbar {
+    background-color: #007bff;
+    padding: 10px;
+    height: 100vh;
+    width: 200px;
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+
+.navbar ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.navbar li {
+    cursor: pointer;
+    color: white;
+    padding: 15px 10px;
+    transition: background-color 0.3s;
+    text-align: center;
+}
+
+.navbar li:hover,
+.navbar li.active {
+    background-color: #0056b3;
+}
+
+.product-shop {
+    max-width: 1200px;
+    margin-left: 220px;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    position: relative; /* Thêm relative để giữ vị trí cho các phần tử con */
+}
+
+.tab-content {
+    padding: 20px;
+}
+
+.product-list {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 20px;
+}
+
+.product-item {
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 10px;
+    text-align: center;
+}
+
+.product-image img {
+    max-width: 100%;
+    height: auto;
+}
+
+.product-info h3 {
+    font-size: 1.2em;
+    margin: 10px 0;
+}
+
+.product-info p {
+    color: #333;
+}
+
+.product-info button {
+    margin: 5px;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: #28a745;
+    color: white;
+}
+
+.product-info button.delete-btn {
+    background-color: #dc3545;
+}
+
+.product-info button:hover {
+    opacity: 0.9;
+}
+
+/* Overlay làm mờ */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 10;
+}
+
+/* Form cập nhật sản phẩm */
+.form-container {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    z-index: 20;
+    width: 400px;
+    max-width: 90%;
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+/* Hiệu ứng fade in khi form hiện lên */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translate(-50%, -60%);
+    }
+    to {
+        opacity: 1;
+        transform: translate(-50%, -50%);
+    }
+}
+
+#updateForm h3 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 1.5rem;
+    color: #007bff;
+    font-weight: 500;
+}
+
+#updateForm input,
+#updateForm textarea {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: border-color 0.3s;
+}
+
+#updateForm input:focus,
+#updateForm textarea:focus {
+    outline: none;
+    border-color: #007bff;
+}
+
+#updateForm textarea {
+    height: 100px;
+    resize: none;
+}
+
+#updateForm button {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1rem;
+    margin-bottom: 10px;
+    transition: background-color 0.3s;
+}
+
+#updateForm button[type="submit"] {
+    background-color: #28a745;
+    color: white;
+}
+
+#updateForm button[type="submit"]:hover {
+    background-color: #218838;
+}
+
+#updateForm button[type="button"] {
+    background-color: #dc3545;
+    color: white;
+}
+
+#updateForm button[type="button"]:hover {
+    background-color: #c82333;
+}
+
+/* Điều chỉnh bố cục của các input cho hợp lý */
+#updateForm input::placeholder,
+#updateForm textarea::placeholder {
+    color: #999;
+}
+
+/* Các nút với hiệu ứng hover */
+button {
+    transition: transform 0.2s;
+}
+
+button:hover {
+    transform: scale(1.05);
+}
+
+#pagination {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.pagination button {
+    margin: 0 5px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+}
+
+.pagination button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+/* Đặt kiểu cho toàn bộ phần danh sách đơn hàng */
+#order-list {
+    padding: 20px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+/* Đặt kiểu cho tiêu đề danh sách đơn hàng */
+#order-list h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+/* Đặt kiểu cho dropdown để chọn trạng thái đơn hàng */
+#orderState {
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+/* Đặt kiểu cho phần tử chứa danh sách đơn hàng */
+#order-list-content {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Đặt kiểu cho mỗi đơn hàng */
+.order-item {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin-bottom: 15px;
+    padding: 15px;
+    transition: box-shadow 0.3s;
+}
+
+/* Hiệu ứng hover cho mỗi đơn hàng */
+.order-item:hover {
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Đặt kiểu cho thông tin đơn hàng */
+.order-info {
+    display: flex; /* Sử dụng flexbox để sắp xếp ngang */
+    justify-content: space-between; /* Giúp các phần tử cách đều nhau */
+    margin-bottom: 10px;
+}
+
+/* Đặt kiểu cho phần thông tin sản phẩm */
+.order-products {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Đặt kiểu cho mỗi sản phẩm trong đơn hàng */
+.order-product-item {
+    display: flex; /* Sử dụng flexbox để sắp xếp ngang */
+    align-items: center;
+    border: 1px solid #eee;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+/* Đặt kiểu cho ảnh sản phẩm */
+.order-product-image {
+    width: 50px; /* Đặt kích thước ảnh sản phẩm */
+    height: 50px;
+    margin-right: 10px;
+    border-radius: 5px;
+}
+
+/* Đặt kiểu cho thông tin sản phẩm */
+.order-product-info {
+    flex-grow: 1;
+    display: flex; /* Sử dụng flexbox để sắp xếp ngang */
+    justify-content: space-between; /* Giúp các phần tử cách đều nhau */
+}
+
+/* Đặt kiểu cho phân trang */
+.pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+/* Đặt kiểu cho các nút phân trang */
+.pagination button {
+    padding: 10px 15px;
+    margin: 0 5px;
+    border: none;
+    border-radius: 5px;
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+/* Hiệu ứng hover cho các nút phân trang */
+.pagination button:hover {
+    background-color: #0056b3;
+}
+
+/* Đặt kiểu cho các nút phân trang đã bị vô hiệu hóa */
+.pagination button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+.order-actions {
+    margin-top: 15px; /* Khoảng cách trên cùng */
+}
+
+.order-actions button {
+    padding: 10px 15px;
+    margin-right: 10px; /* Khoảng cách giữa các nút */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.order-actions .btn-confirm {
+    background-color: #28a745; /* Màu xanh cho nút xác nhận */
+    color: white;
+}
+
+.order-actions .btn-confirm:hover {
+    background-color: #218838; /* Hiệu ứng hover */
+}
+
+.order-actions .btn-cancel {
+    background-color: #dc3545; /* Màu đỏ cho nút hủy */
+    color: white;
+}
+
+.order-actions .btn-cancel:hover {
+    background-color: #c82333; /* Hiệu ứng hover */
+}
+
+.cancel-details {
+    margin-top: 10px; /* Khoảng cách trên cùng */
+}
+
+.cancel-details button {
+    padding: 5px 10px;
+    margin-bottom: 5px; /* Khoảng cách dưới cùng */
+    border: none;
+    border-radius: 5px;
+    background-color: #007bff; /* Màu xanh cho nút chi tiết */
+    color: white;
+    cursor: pointer;
+}
+
+.cancel-details button:hover {
+    background-color: #0056b3; /* Hiệu ứng hover */
+}
+
+/* Định dạng chung cho form */
+#createProductForm {
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f4f4f4;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Các trường input và textarea */
+#createProductForm .form-group {
+    margin-bottom: 15px;
+}
+
+#createProductForm label {
+    font-weight: bold;
+    margin-bottom: 5px;
+    display: block;
+}
+
+#createProductForm input[type="text"],
+#createProductForm input[type="number"],
+#createProductForm textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+#createProductForm textarea {
+    resize: vertical;
+    height: 100px;
+}
+
+/* Nút submit */
+#createProductForm button[type="submit"] {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+#createProductForm button[type="submit"]:hover {
+    background-color: #45a049;
+}
+
+/* Chung cho tất cả các form */
+.form-container {
+    background-color: #f9f9f9; /* Màu nền nhạt */
+    border-radius: 8px; /* Bo góc cho form */
+    padding: 20px; /* Khoảng cách bên trong */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Đổ bóng cho form */
+    max-width: 400px; /* Chiều rộng tối đa của form */
+    margin: 20px auto; /* Căn giữa form */
+}
+
+/* Tạo kiểu cho tiêu đề form */
+.form-container h3 {
+    margin-bottom: 15px; /* Khoảng cách dưới tiêu đề */
+    font-size: 1.5rem; /* Kích thước chữ */
+    color: #333; /* Màu chữ */
+}
+
+/* Nhóm các trường trong form */
+.form-group {
+    margin-bottom: 15px; /* Khoảng cách dưới mỗi nhóm trường */
+}
+
+/* Nhãn cho các trường nhập liệu */
+.form-group label {
+    display: block; /* Hiển thị nhãn ở dòng mới */
+    margin-bottom: 5px; /* Khoảng cách dưới nhãn */
+    font-weight: 500; /* Đậm chữ */
+}
+
+/* Trường nhập liệu */
+.form-group input,
+.form-group textarea {
+    width: 100%; /* Chiều rộng 100% */
+    padding: 10px; /* Khoảng cách bên trong */
+    border: 1px solid #ccc; /* Đường viền */
+    border-radius: 4px; /* Bo góc */
+    font-size: 1rem; /* Kích thước chữ */
+    transition: border-color 0.3s; /* Hiệu ứng chuyển màu viền */
+}
+
+/* Đổi màu đường viền khi focus */
+.form-group input:focus,
+.form-group textarea:focus {
+    border-color: #007bff; /* Màu viền khi focus */
+    outline: none; /* Bỏ outline mặc định */
+}
+
+/* Nút gửi form */
+button[type="submit"] {
+    background-color: #007bff; /* Màu nền của nút */
+    color: white; /* Màu chữ */
+    padding: 10px 15px; /* Khoảng cách bên trong */
+    border: none; /* Bỏ đường viền */
+    border-radius: 4px; /* Bo góc */
+    cursor: pointer; /* Con trỏ chuột khi di chuột qua */
+    font-size: 1rem; /* Kích thước chữ */
+    transition: background-color 0.3s; /* Hiệu ứng chuyển màu */
+}
+
+/* Đổi màu nút khi hover */
+button[type="submit"]:hover {
+    background-color: #0056b3; /* Màu nền khi hover */
+}
+
+/* Nút hủy */
+button[type="button"] {
+    background-color: #dc3545; /* Màu nền của nút hủy */
+    color: white; /* Màu chữ */
+    padding: 10px 15px; /* Khoảng cách bên trong */
+    border: none; /* Bỏ đường viền */
+    border-radius: 4px; /* Bo góc */
+    cursor: pointer; /* Con trỏ chuột khi di chuột qua */
+    font-size: 1rem; /* Kích thước chữ */
+    transition: background-color 0.3s; /* Hiệu ứng chuyển màu */
+}
+
+/* Đổi màu nút hủy khi hover */
+button[type="button"]:hover {
+    background-color: #c82333; /* Màu nền khi hover */
+}
+
+.category-table {
+    width: 100%; /* Đặt chiều rộng của bảng */
+    border-collapse: collapse; /* Xóa khoảng cách giữa các ô */
+    margin-top: 20px; /* Khoảng cách phía trên bảng */
+}
+
+.category-table th,
+.category-table td {
+    padding: 10px; /* Khoảng cách bên trong ô */
+    text-align: left; /* Căn trái chữ */
+    border: 1px solid #ccc; /* Đường viền cho ô */
+}
+
+.category-table th {
+    background-color: #007bff; /* Màu nền tiêu đề bảng */
+    color: white; /* Màu chữ tiêu đề bảng */
+}
+
+/* Kiểu cho các nút chung */
+button {
+    color: white; /* Màu chữ trắng */
+    border: none; /* Bỏ đường viền */
+    border-radius: 5px; /* Bo tròn góc */
+    padding: 10px 15px; /* Khoảng cách bên trong nút */
+    cursor: pointer; /* Con trỏ chuột khi di chuột qua nút */
+    transition: background-color 0.3s, transform 0.2s; /* Hiệu ứng chuyển đổi */
+}
+/* Nút xóa */
+.button-delete {
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 15px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s; /* Màu đỏ cho nút xóa */
+}
+
+.button-delete:hover {
+    background-color: #c82333; /* Màu tối hơn khi di chuột */
+}
+
+/* Nút thêm sản phẩm */
+.button-add {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 15px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s; /* Màu xanh dương cho nút thêm sản phẩm */
+}
+
+.button-add:hover {
+    background-color: #0056b3; /* Màu tối hơn khi di chuột */
+}
+
+/* Hiệu ứng khi nút bị nhấn */
+button:active {
+    transform: scale(0.95); /* Giảm kích thước nhẹ khi nhấn */
+}
+
+/* Nội dung overlay */
+.overlay-content {
+    background-color: #fff; /* Nền trắng */
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    width: 80%; /* Độ rộng tùy chỉnh */
+    max-width: 600px; /* Độ rộng tối đa */
+    overflow-y: auto; /* Cuộn khi nội dung quá lớn */
+}
+
+/* Định dạng bảng */
+#productTable {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px; /* Khoảng cách dưới bảng */
+}
+
+#productTable th, #productTable td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #ddd; /* Đường kẻ dưới mỗi ô */
+}
+
+#productTable th {
+    background-color: #f2f2f2; /* Nền xám nhạt cho tiêu đề */
+}
+
+/* Định dạng ảnh trong bảng */
+#productTable img {
+    width: 50px; /* Đặt chiều rộng cho ảnh */
+    height: auto; /* Đảm bảo tỷ lệ khung hình */
+}
+
+/* Nút "Thêm" */
+#productTable button {
+    background-color: #4CAF50; /* Màu xanh cho nút Thêm */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 8px 12px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#productTable button:hover {
+    background-color: #388E3C; /* Màu tối hơn khi hover */
+}
+
+/* Nút "Đóng" */
+.close-button {
+    background-color: #f44336; /* Màu đỏ cho nút Đóng */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 15px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-top: 20px; /* Khoảng cách trên nút Đóng */
+}
+
+.close-button:hover {
+    background-color: #c62828; /* Màu tối hơn khi hover */
+}
+
+.button-show-products {
+    background-color: #4CAF50; /* Màu nền */
+    color: white; /* Màu chữ */
+    border: none; /* Không có viền */
+    border-radius: 5px; /* Bo góc */
+    padding: 10px 15px; /* Đệm bên trong */
+    font-size: 16px; /* Kích thước chữ */
+    cursor: pointer; /* Hiển thị con trỏ chuột khi di chuột qua */
+    transition: background-color 0.3s, transform 0.2s; /* Hiệu ứng chuyển động */
+}
+
+.button-show-products:hover {
+    background-color: #4CAF50; /* Màu nền khi hover */
+    transform: scale(1.05); /* Phóng to nút một chút khi hover */
+}
+
+.button-show-products:focus {
+    outline: none; /* Ẩn viền focus */
+}

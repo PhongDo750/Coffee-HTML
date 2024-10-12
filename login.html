@@ -59,12 +59,12 @@
                 if (data.accessToken) {
                     // Store accessToken in localStorage
                     localStorage.setItem("accessToken", data.accessToken);
-
-                    // Display success message
-                    //document.getElementById("serverResponse").innerText = "Login successful! Access token stored.";
                     alert("Login successful!")
-
-                    window.location.href = "main.html";
+                    if (data.isShop === true) {
+                        window.location.href = "product-shop.html";
+                    } else {
+                        window.location.href = "main.html";
+                    }
                 } else {
                     // Display error message
                     document.getElementById("serverResponse").innerText = "Login failed. Please try again.";
