@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trang Quản Lý Sản Phẩm</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap&subset=vietnamese" rel="stylesheet">
+    <link rel="stylesheet" href="./assets/icon/fontawesome-free-6.2.0-web/css/all.css">
+    <link rel="stylesheet" href="./assets/css/product-shop.css">
+</head>
+<body>
+    <nav class="navbar">
+        <ul>
+            <li onclick="showTab('create-product')">Tạo mới sản phẩm</li> 
+            <li class="active" onclick="showTab('edit-product')">Chỉnh sửa sản phẩm</li>
+            <li onclick="showTab('create-category')">Tạo mới danh mục</li> 
+            <li onclick="showTab('edit-category')">Chỉnh sửa danh mục</li>
+            <li onclick="showTab('order-list')">Đơn mua</li>
+        </ul>
+    </nav>
+
+    <div class="product-shop">
+        <div class="tab-content">
+            <!-- Tab chỉnh sửa sản phẩm -->
+            <div id="edit-product" class="tab active">
+                <h2>Chỉnh sửa sản phẩm</h2>
+                <div id="product-list" class="product-list">
+                    <!-- Danh sách sản phẩm sẽ được thêm vào đây -->
+                </div>
+
+                <!-- Form cập nhật sản phẩm -->
+                <div id="overlay" class="overlay" style="display: none;"></div> <!-- Overlay để làm mờ -->
+                
+                <div id="updateFormContainer" class="form-container" style="display: none;">
+                    <h3>Cập nhật sản phẩm</h3>
+                    <form id="updateForm">
+                        <input type="text" id="productName" placeholder="Tên sản phẩm" required>
+                        <textarea id="productDescription" placeholder="Mô tả sản phẩm" required></textarea>
+                        <input type="number" id="productPrice" placeholder="Giá sản phẩm" required>
+                        <input type="text" id="productImage" placeholder="URL ảnh sản phẩm" required>
+                        <button type="submit">Cập nhật</button>
+                        <button type="button" onclick="hideUpdateForm()">Hủy</button>
+                    </form>
+                </div>
+
+                <div id="pagination" class="pagination">
+                    <!-- Buttons will be dynamically inserted here -->
+                </div>
+            </div>
+
+            <!-- Tab danh sách đơn mua -->
+            <div id="order-list" class="tab" style="display: none;">
+                <h2>Danh sách đơn mua</h2>
+                <select id="orderState" onchange="loadOrdersByState()">
+                    <option value="PENDING_PAYMENT">Chờ xử lý</option>
+                    <option value="WAITING_DELIVERY">Đang giao hàng</option>
+                    <option value="COMPLETED">Đã giao</option>
+                    <option value="CANCELED">Đã hủy</option>
+                </select>
+                <div id="order-list-content">
+                    <!-- Danh sách đơn mua sẽ được thêm vào đây -->
+                </div>
+
+                <div id="paginationOrders" class="pagination">
+                    <!-- Buttons will be dynamically inserted here -->
+                </div>
+            </div>
+
+            <div id="create-product" class="tab" style="display: none;">
+                <h2>Tạo mới sản phẩm</h2>
+                <form id="createProductForm">
+                    <div class="form-group">
+                        <label for="name">Tên sản phẩm:</label>
+                        <input type="text" id="name" name="name" placeholder="Nhập tên sản phẩm" required>
+                    </div>
+            
+                    <div class="form-group">
+                        <label for="description">Mô tả sản phẩm:</label>
+                        <textarea id="description" name="description" placeholder="Nhập mô tả sản phẩm" required></textarea>
+                    </div>
+            
+                    <div class="form-group">
+                        <label for="price">Giá sản phẩm:</label>
+                        <input type="number" id="price" name="price" placeholder="Nhập giá sản phẩm" required>
+                    </div>
+            
+                    <div class="form-group">
+                        <label for="image">URL ảnh sản phẩm:</label>
+                        <input type="text" id="image" name="image" placeholder="Nhập URL ảnh sản phẩm" required>
+                    </div>
+            
+                    <button type="submit">Tạo mới</button>
+                </form>
+            </div>
+
+            <div id="create-category" class="tab" style="display: none;">
+                <h2>Tạo mới danh mục</h2>
+                <form id="createCategoryForm" onsubmit="createCategory(event)">
+                    <div class="form-group">
+                        <label for="categoryName">Tên danh mục:</label>
+                        <input type="text" id="categoryName" name="categoryName" placeholder="Nhập tên danh mục" required>
+                    </div>
+                    <button type="submit">Tạo mới danh mục</button>
+                </form>
+            </div>
+
+            <div id="edit-category" class="tab" style="display: none;">
+                <h2>Chỉnh sửa danh mục</h2>
+                <table id="categoryTable" class="category-table">
+                    <thead>
+                        <tr>
+                            <th>Tên danh mục</th>
+                            <th>Hành động</th>
+                        </tr>
+                    </thead>
+                    <tbody id="categoryList">
+                        <!-- Danh sách danh mục sẽ được thêm vào đây -->
+                    </tbody>
+                </table>
+            </div>
+
+            <div id="productOverlay" class="overlay product-overlay" style="display:none;">
+                <div class="overlay-content">
+                    <table id="productTable">
+                        <thead>
+                            <tr>
+                                <th>Ảnh</th>
+                                <th>Tên sản phẩm</th>
+                                <th>Giá</th>
+                                <th>Hành động</th>
+                            </tr>
+                        </thead>
+                        <tbody id="productList"></tbody>
+                    </table>
+                    <button class="close-button" onclick="closeOverlay()">Đóng</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="./assets/js/product-shop.js"></script>
+    <script src="./assets/js/category-shop.js"></script>
+</body>
+</html>

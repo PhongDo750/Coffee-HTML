@@ -1,0 +1,176 @@
+/* Order State Tabs Container */
+.order-state-tabs {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 1rem;
+    margin-top: 80px;
+    border-bottom: 2px solid #f1f1f1;
+    background-color: #f9f9f9;
+}
+
+.order-state-tabs .tab-button {
+    padding: 1rem 2rem;
+    font-size: 1.6rem;
+    font-weight: 500;
+    color: #555;
+    background: none;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    transition: color 0.3s, background-color 0.3s, border-bottom 0.3s;
+    position: relative;
+}
+
+.order-state-tabs .tab-button:hover {
+    color: #e67e22;
+}
+
+.order-state-tabs .tab-button.active {
+    color: #e67e22;
+    font-weight: 600;
+}
+
+.order-state-tabs .tab-button.active::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 50%;
+    height: 3px;
+    background-color: #e67e22;
+    border-radius: 2px;
+}
+
+.order-state-tabs .tab-button:hover::after {
+    width: 70%;
+    transition: width 0.3s ease;
+}
+
+/* Header for Order List */
+#order-list-header {
+    position: sticky;
+    top: 0;
+    background-color: #f1f1f1;
+    z-index: 10;
+    padding: 8px 0;
+    font-size: 15px;
+}
+
+/* Product Header */
+.product-header {
+    display: flex;
+    font-weight: bold;
+    color: #555;
+    border-bottom: 2px solid #ddd;
+}
+
+.product-header-cell {
+    flex: 1;
+    padding: 8px;
+    text-align: center;
+}
+
+/* Order Item */
+.order-item {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 16px;
+    margin-top: 16px;
+    background-color: #f9f9f9;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Product Table */
+.product-table {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.product-row {
+    display: flex;
+    align-items: center; /* Center vertically */
+    padding: 8px 0;
+}
+
+.product-cell {
+    flex: 1;
+    text-align: center;
+    padding: 8px;
+    font-size: 15px;
+}
+
+/* Product Image */
+.product-row img {
+    width: 50px;
+    height: 50px;
+    border-radius: 4px;
+    margin-right: 8px; /* Space between image and product name */
+}
+
+/* Additional class for image alignment */
+.product-image {
+    display: flex;
+    justify-content: center; /* Center image */
+    align-items: center; /* Center vertically */
+}
+
+/* Order Summary Style */
+.order-summary {
+    display: flex; /* Flexbox for alignment */
+    justify-content: flex-end; /* Aligns to the right */
+    align-items: center; /* Center vertically */
+    margin-top: 10px; /* Space above */
+}
+
+/* Total Price Style */
+.total-price {
+    font-weight: bold;
+    color: #333;
+    font-size: 16px;
+    margin-left: 10px; /* Add space between the button and total price */
+}
+
+/* Style for Cancel Button */
+.cancel-button {
+    background-color: #ff4d4d; /* Warning color */
+    color: white; /* White text */
+    padding: 10px 20px; /* Padding for the button */
+    border: none; /* No border */
+    border-radius: 5px; /* Rounded corners */
+    cursor: pointer; /* Cursor on hover */
+    font-size: 16px; /* Font size */
+    transition: background-color 0.3s; /* Transition effect */
+}
+
+.cancel-button:hover {
+    background-color: #ff1a1a; /* Darker on hover */
+}
+
+/* Style cho chi tiết đơn hủy */
+.cancel-details {
+    background-color: #f8f9fa; /* Màu nền sáng để nổi bật */
+    border: 1px solid #ccc; /* Viền nhẹ */
+    border-radius: 5px; /* Bo góc nhẹ */
+    padding: 15px; /* Khoảng cách bên trong */
+    margin-top: 10px; /* Khoảng cách phía trên */
+    display: none; /* Ẩn mặc định */
+    transition: all 0.3s ease; /* Hiệu ứng chuyển tiếp */
+}
+
+/* Tiêu đề trong chi tiết đơn hủy */
+.cancel-details p {
+    font-size: 15px; /* Kích thước chữ */
+    color: #333; /* Màu chữ */
+    margin: 5px 0; /* Khoảng cách giữa các đoạn */
+}
+
+/* Đặc biệt cho tiêu đề */
+.cancel-details p strong {
+    color: #e67e22; /* Màu chữ cho tiêu đề */
+}
+
+
+
