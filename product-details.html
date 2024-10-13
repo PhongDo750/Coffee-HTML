@@ -38,8 +38,9 @@
                         <a href="#"><i class="fa-solid fa-user"></i></a>
                         <div class="dropdown_content">
                             <ul>
+                                <li><a href="order.html">Đơn mua</a></li>
                                 <li><a href="information-user.html">Thông tin cá nhân</a></li>
-                                <li><a href="/logout">Đăng xuất</a></li>
+                                <li><a href="login.html" id="logout-link">Đăng xuất</a></li>
                             </ul>
                         </div>
                     </div>
@@ -67,8 +68,37 @@
                 <!-- Buttons will be dynamically inserted here -->
             </div>
         </section>
+
+        <div class="comments-section">
+            <h2>Bình luận</h2>
+            <div id="comment-list">
+                <!-- Các bình luận sẽ được chèn vào đây bởi JavaScript -->
+            </div>
+
+            <div class="add-comment">
+                <textarea id="comment" placeholder="Viết bình luận của bạn ở đây..."></textarea>
+                <button id="add-comment-btn">Thêm bình luận</button>
+            </div>
+
+            <div class="rating">
+                <label for="rating">Đánh giá:</label>
+                <select id="rating">
+                    <option value="1">1 ⭐</option>
+                    <option value="2">2 ⭐</option>
+                    <option value="3">3 ⭐</option>
+                    <option value="4">4 ⭐</option>
+                    <option value="5">5 ⭐</option>
+                </select>
+            </div>
+
+            <div class="upload-image">
+                <label for="comment-image">Tải ảnh lên:</label>
+                <input type="file" id="comment-image" accept="image/*">
+            </div>
+        </div>
     </div>
 
     <script src="./assets/js/product-details.js" defer></script>
+    <script src="./assets/js/log-out.js"></script>   
 </body>
 </html>

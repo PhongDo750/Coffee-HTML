@@ -228,6 +228,89 @@ async function addProductToCart(productId, quantity) {
     }
 }
 
+let currentPageComment = 0;
+const pageCommentSize = 10;
+async function loadComments(productId, page=0, size=10) {
+    try {
+        const response = await fetch(`http://localhost:8080/api/v1/comment/get-comments?productId=${productId}&page=${page}&size=${size}`);
+        const data = await response.json();
+
+        if (!response.ok) {
+            throw new Error(`Error: ${response.status} - ${response.statusText}`);
+        }
+
+        if (!data || !data.content) {
+            return;
+        }
+
+        const comments = data.content
+        const commentList = document.getElementById('comment-list');
+        commentList.innerHTML = ''; // Xóa nội dung cũ
+
+        comments.forEach(comment => {
+            console.log(comment)
+            const commentItem = document.createElement('div');
+            commentItem.classList.add('comment-item');
+
+            commentItem.innerHTML = `
+                <p><strong>Rating:</strong> ${comment.rating}</p>
+                    <p><strong>Comment:</strong> ${comment.comment}</p>
+                    <p><strong>Images:</strong> ${comment.images ? `<img src="${comment.images}" alt="Comment Image" style="max-width: 100px;">` : 'No image'}</p>
+                `;
+
+            commentList.appendChild(commentItem);
+        });
+    } catch (error) {
+        console.error('Error loading comments:', error);
+    }
+}
+
+// Gắn sự kiện cho nút thêm bình luận
+document.getElementById('add-comment-btn').addEventListener('click', () => {
+    const commentText = document.getElementById('comment').value;
+    const productId = getQueryParameter('productId');
+    const rating = document.getElementById('rating').value;
+
+    if (commentText) {
+        addComment(productId, commentText, rating); // Gọi hàm thêm bình luận
+    } else {
+        alert('Vui lòng nhập bình luận!');
+    }
+});
+
+// Hàm thêm bình luận
+async function addComment(productId, text, rating) {
+    try {
+        const accessToken = localStorage.getItem('accessToken'); // Lấy access token từ localStorage
+        const commentInput = {
+            productId: productId,
+            comment: text,
+            rating: rating
+            // thêm các trường khác nếu cần
+        };
+        const response = await fetch('http://localhost:8080/api/v1/comment/create', {
+            method: 'POST',
+            headers: {
+                'Authorization': 'Bearer ' + accessToken,
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(commentInput) // Chuyển đổi đối tượng commentInput sang JSON
+        });
+
+        if (response.ok) {
+            alert('Bình luận đã được thêm!'); // Thông báo thành công
+            document.getElementById('comment').value = ''; // Xóa ô nhập liệu
+            document.getElementById('rating').value = '1';
+            loadComments(productId, currentPageComment, pageCommentSize); // Tải lại danh sách bình luận
+        } else {
+            throw new Error('Lỗi khi thêm bình luận');
+        }
+    } catch (error) {
+        console.error('Error adding comment:', error);
+        alert('Có lỗi xảy ra khi thêm bình luận. Vui lòng thử lại sau.');
+    }
+}
+
 // Hàm lấy giá trị query parameter từ URL
 function getQueryParameter(param) {
     const urlParams = new URLSearchParams(window.location.search);
@@ -237,9 +320,10 @@ function getQueryParameter(param) {
 window.onload = () => {
     const productId = getQueryParameter('productId'); // Lấy productId từ query parameter
     if (productId) {
-        loadCategories()
+        loadCategories();
         loadProductDetails(productId);
-        loadProducts(currentPage, pageSize)
+        loadProducts(currentPage, pageSize);
+        loadComments(productId, currentPageComment, pageCommentSize);
     } else {
         console.error('Product ID not found in URL');
     }

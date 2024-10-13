@@ -113,3 +113,80 @@ button.order:active {
     margin: 0; /* Bỏ margin */
     padding: 0; /* Bỏ padding */
 }
+
+.comments-section {
+    margin-top: 40px; /* Khoảng cách trên phần bình luận */
+    padding: 20px;
+    background-color: #ffffff; /* Màu nền cho phần bình luận */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Đổ bóng nhẹ */
+    border-radius: 10px; /* Bo góc */
+}
+
+.comments-header {
+    font-size: 2rem; /* Kích thước chữ cho tiêu đề phần bình luận */
+    color: #333; /* Màu chữ */
+    margin-bottom: 20px; /* Khoảng cách dưới tiêu đề */
+}
+
+.comment {
+    padding: 15px; /* Padding cho từng bình luận */
+    border-bottom: 1px solid #eee; /* Đường phân cách giữa các bình luận */
+}
+
+.comment:last-child {
+    border-bottom: none; /* Không có đường phân cách cho bình luận cuối */
+}
+
+.comment .comment-author {
+    font-weight: bold; /* Làm đậm tên tác giả */
+    color: #ffbf00; /* Màu chữ cho tên tác giả */
+}
+
+.comment .comment-text {
+    font-size: 1.4rem; /* Kích thước chữ cho nội dung bình luận */
+    color: #666; /* Màu chữ cho nội dung bình luận */
+    margin: 5px 0; /* Khoảng cách trên và dưới */
+}
+
+.comment .comment-rating {
+    color: #ffbf00; /* Màu vàng cho đánh giá */
+    margin-bottom: 5px; /* Khoảng cách dưới đánh giá */
+}
+
+.add-comment {
+    margin-top: 20px; /* Khoảng cách trên phần thêm bình luận */
+    padding: 15px;
+    border: 1px solid #ccc; /* Đường viền cho khung thêm bình luận */
+    border-radius: 8px; /* Bo góc */
+    background-color: #f9f9f9; /* Màu nền */
+}
+
+.add-comment textarea {
+    width: 100%; /* Chiều rộng ô nhập liệu */
+    height: 80px; /* Chiều cao */
+    padding: 10px; /* Padding bên trong */
+    border: 1px solid #ccc; /* Đường viền */
+    border-radius: 5px; /* Bo góc */
+    resize: none; /* Không cho phép kéo dãn */
+}
+
+.add-comment button {
+    margin-top: 10px; /* Khoảng cách trên nút thêm bình luận */
+    padding: 10px 20px; /* Padding cho nút */
+    background-color: #ffbf00; /* Màu nền nút */
+    color: #333; /* Màu chữ nút */
+    border: none; /* Bỏ đường viền */
+    border-radius: 5px; /* Bo góc */
+    cursor: pointer; /* Con trỏ khi hover */
+    transition: background-color 0.3s ease; /* Hiệu ứng chuyển màu */
+}
+
+.add-comment button:hover {
+    background-color: #e0a800; /* Màu nền khi hover */
+}
+
+.comment-item {
+    margin-bottom: 15px;
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
