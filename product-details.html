@@ -69,16 +69,11 @@
         </section>
 
         <div class="comments-section">
-            <h2>Bình luận</h2>
-            <div id="comment-list">
-                <!-- Các bình luận sẽ được chèn vào đây bởi JavaScript -->
-            </div>
-
-            <div class="add-comment">
+            <h2>Bình luận</h2>       
+            <!-- <div class="add-comment">
                 <textarea id="comment" placeholder="Viết bình luận của bạn ở đây..."></textarea>
                 <button id="add-comment-btn">Thêm bình luận</button>
             </div>
-
             <div class="rating">
                 <label for="rating">Đánh giá:</label>
                 <select id="rating">
@@ -89,10 +84,50 @@
                     <option value="5">5 ⭐</option>
                 </select>
             </div>
-
             <div class="upload-image">
                 <label for="comment-image">Tải ảnh lên:</label>
                 <input type="file" id="comment-image" accept="image/*">
+            </div> -->
+
+            <h2 class="comment-title">Thêm bình luận của bạn</h2>
+    
+            <div class="comment-form">
+                <!-- Bình luận -->
+                <div class="input-group">
+                    <textarea id="comment" placeholder="Viết bình luận của bạn..." class="comment-input"></textarea>
+                </div>
+
+                <!-- Đánh giá -->
+                <div class="rating-group">
+                    <label for="rating" class="rating-label">Đánh giá của bạn:</label>
+                    <div class="star-rating">
+                        <span class="star" data-value="1">&#9733;</span>
+                        <span class="star" data-value="2">&#9733;</span>
+                        <span class="star" data-value="3">&#9733;</span>
+                        <span class="star" data-value="4">&#9733;</span>
+                        <span class="star" data-value="5">&#9733;</span>
+                    </div>
+                </div>
+
+                <!-- Tải ảnh lên -->
+                <div class="upload-image">
+                    <label for="comment-image">Tải ảnh lên:</label>
+                    <input type="file" id="comment-image" accept="image/*" class="upload-input">
+                </div>
+
+                <!-- Nút thêm bình luận -->
+                <div class="submit-group">
+                    <button id="add-comment-btn" class="comment-btn">Thêm bình luận</button>
+                </div>
+            </div>
+
+            <div id="comment-list">
+                <!-- Các bình luận sẽ được chèn vào đây bởi JavaScript -->
+            </div>
+            <div id="comment-pagination">
+                <button id="prev-page" disabled>Trước</button>
+                <span id="current-page">1</span>
+                <button id="next-page">Tiếp theo</button>
             </div>
         </div>
     </div>

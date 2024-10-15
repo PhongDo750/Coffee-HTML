@@ -228,11 +228,11 @@ async function addProductToCart(productId, quantity) {
     }
 }
 
-let currentPageComment = 0;
-const pageCommentSize = 10;
-async function loadComments(productId, page=0, size=10) {
+let currentPageComment = 0; // Biến để theo dõi trang hiện tại
+const commentsPerPage = 5; // Số bình luận trên mỗi trang
+async function loadComments(productId, page=0) {
     try {
-        const response = await fetch(`http://localhost:8080/api/v1/comment/get-comments?productId=${productId}&page=${page}&size=${size}`);
+        const response = await fetch(`http://localhost:8080/api/v1/comment/get-comments?productId=${productId}&page=${page}&size=${commentsPerPage}`);
         const data = await response.json();
 
         if (!response.ok) {
@@ -248,66 +248,148 @@ async function loadComments(productId, page=0, size=10) {
         commentList.innerHTML = ''; // Xóa nội dung cũ
 
         comments.forEach(comment => {
-            console.log(comment)
             const commentItem = document.createElement('div');
             commentItem.classList.add('comment-item');
 
             commentItem.innerHTML = `
-                <p><strong>Rating:</strong> ${comment.rating}</p>
-                    <p><strong>Comment:</strong> ${comment.comment}</p>
-                    <p><strong>Images:</strong> ${comment.images ? `<img src="${comment.images}" alt="Comment Image" style="max-width: 100px;">` : 'No image'}</p>
-                `;
+                <div class="comment-item">
+                    <div class="comment-header">
+                        <img src="path_to_avatar_image" alt="User Avatar" class="comment-avatar"> 
+                        <!-- Avatar: Bạn có thể thay thế bằng ảnh của người dùng -->
+                        <div class="comment-info">
+                            <span class="comment-user">${comment.nameUser}</span>
+                            <div class="comment-rating">
+                                ${'★'.repeat(comment.rating)}${'☆'.repeat(5 - comment.rating)}
+                            </div>
+                            <span class="comment-date">${new Date(comment.createdAt).toLocaleString()}</span>
+                        </div>
+                    </div>
 
+                    <div class="comment-body">
+                        <p class="comment-text">${comment.comment}</p>
+                        <div class="comment-images">
+                            ${comment.commentImages && Array.isArray(comment.commentImages)
+                            ? comment.commentImages // Nếu backend trả về danh sách ảnh dạng mảng
+                            .map(img => `<img src="${img.trim()}" alt="Comment Image" class="comment-img">`)
+                            .join(' ')
+                            : '<p>No image available</p>' // Nếu không có hình ảnh thì hiển thị thông báo
+                            }
+                         </div>
+                    </div>
+                </div>
+            `;
+            
             commentList.appendChild(commentItem);
         });
+
+        // Cập nhật trang hiện tại
+        document.getElementById('current-page').innerText = currentPage + 1;
+
+        // Kích hoạt / vô hiệu hóa nút điều hướng
+        document.getElementById('prev-page').disabled = currentPage === 0;
+        document.getElementById('next-page').disabled = data.last; // Nếu đây là trang cuối cùng
     } catch (error) {
         console.error('Error loading comments:', error);
     }
 }
 
-// Gắn sự kiện cho nút thêm bình luận
-document.getElementById('add-comment-btn').addEventListener('click', () => {
-    const commentText = document.getElementById('comment').value;
-    const productId = getQueryParameter('productId');
-    const rating = document.getElementById('rating').value;
+// Gắn sự kiện cho nút "Trước" và "Tiếp theo"
+document.getElementById('prev-page').addEventListener('click', () => {
+    if (currentPage > 0) {
+        currentPage--;
+        loadComments(getQueryParameter('productId'), currentPage);
+    }
+});
 
-    if (commentText) {
-        addComment(productId, commentText, rating); // Gọi hàm thêm bình luận
-    } else {
-        alert('Vui lòng nhập bình luận!');
+// Gọi hàm loadComments lần đầu tiên khi trang tải
+loadComments(getQueryParameter('productId'), currentPage);
+
+document.getElementById('next-page').addEventListener('click', () => {
+    currentPage++;
+    loadComments(getQueryParameter('productId'), currentPage);
+});
+
+// Hàm để reset các ô nhập liệu về mặc định
+function resetCommentForm() {
+    document.getElementById('comment').value = '';  // Xóa nội dung bình luận
+    document.getElementById('comment-image').value = ''; // Xóa ảnh đã tải lên
+
+    const stars = document.querySelectorAll('.star');
+    stars.forEach((star, index) => {
+        star.classList.remove('active'); // Đặt lại trạng thái ngôi sao
+    });
+}
+
+// Hàm lấy giá trị số sao được chọn
+function getSelectedRating() {
+    const stars = document.querySelectorAll('.star');
+    let rating = 0;
+
+    stars.forEach(star => {
+        if (star.classList.contains('active')) {
+            rating = star.getAttribute('data-value'); // Lấy số sao được chọn
+        }
+    });
+    return rating;
+}
+
+const stars = document.querySelectorAll('.star');
+
+stars.forEach((star, index) => {
+    star.addEventListener('click', () => {
+        // Loại bỏ class 'active' từ tất cả các ngôi sao
+        stars.forEach((s) => s.classList.remove('active'));
+
+        // Thêm class 'active' vào các ngôi sao từ 0 đến ngôi sao được click
+        for (let i = 0; i <= index; i++) {
+            stars[i].classList.add('active');
+        }
+    });
+});
+
+document.getElementById('add-comment-btn').addEventListener('click', async () => {
+    const comment = document.getElementById('comment').value; // Lấy giá trị bình luận
+    const productId = getQueryParameter('productId'); // Lấy productId từ URL
+    const imageFiles = document.getElementById('comment-image').files; // Lấy danh sách ảnh từ input
+    const selectedRating = getSelectedRating(); // Lấy giá trị rating đã chọn
+
+    if (comment && selectedRating > 0) {
+        await addComment(productId, comment, selectedRating, imageFiles);
+        resetCommentForm();
+        loadComments(productId);
+    }
+    else {
+        alert('Vui lòng nhập bình luận và chọn số sao!');
     }
 });
 
 // Hàm thêm bình luận
-async function addComment(productId, text, rating) {
-    try {
-        const accessToken = localStorage.getItem('accessToken'); // Lấy access token từ localStorage
-        const commentInput = {
+async function addComment(productId, comment, rating, imageFile) {
+    const commentInput = {
             productId: productId,
-            comment: text,
-            rating: rating
-            // thêm các trường khác nếu cần
+            comment: comment,
+            rating: rating,
+            images: imageFile // Nếu không cần file, có thể bỏ qua
         };
+    const accessToken = localStorage.getItem('accessToken');
+
+    try {
         const response = await fetch('http://localhost:8080/api/v1/comment/create', {
             method: 'POST',
             headers: {
                 'Authorization': 'Bearer ' + accessToken,
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json' // Sử dụng JSON, không phải multipart
             },
-            body: JSON.stringify(commentInput) // Chuyển đổi đối tượng commentInput sang JSON
+            body: JSON.stringify(commentInput) // Chuyển dữ liệu thành JSON
         });
 
         if (response.ok) {
-            alert('Bình luận đã được thêm!'); // Thông báo thành công
-            document.getElementById('comment').value = ''; // Xóa ô nhập liệu
-            document.getElementById('rating').value = '1';
-            loadComments(productId, currentPageComment, pageCommentSize); // Tải lại danh sách bình luận
+            alert('Bình luận đã được thêm!');
         } else {
-            throw new Error('Lỗi khi thêm bình luận');
+            console.error('Lỗi khi thêm bình luận:', response.status);
         }
     } catch (error) {
         console.error('Error adding comment:', error);
-        alert('Có lỗi xảy ra khi thêm bình luận. Vui lòng thử lại sau.');
     }
 }
 
@@ -324,6 +406,7 @@ window.onload = () => {
         loadProductDetails(productId);
         loadProducts(currentPage, pageSize);
         loadComments(productId, currentPageComment, pageCommentSize);
+        //
     } else {
         console.error('Product ID not found in URL');
     }
