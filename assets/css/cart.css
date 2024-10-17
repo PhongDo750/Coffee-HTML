@@ -98,10 +98,14 @@
     }
 }
 
+.order-button-container {
+    text-align: right; /* Căn nút sang phải */
+}
+
 .order-button {
     display: inline-block;
     padding: 12px 20px;
-    background-color: #4CAF50; /* Màu xanh cho nút */
+    background-color: #ffbf00; /* Màu xanh cho nút */
     color: white;
     border: none;
     border-radius: 5px;
@@ -111,9 +115,10 @@
     margin-top: 20px; /* Khoảng cách trên nút */
     text-align: center;
     width: 150px;
+    margin-right: 175px;
 }
 
 .order-button:hover {
-    background-color: #45a049; /* Thay đổi màu khi hover */
+    background-color: #ffbf00; /* Thay đổi màu khi hover */
 }
 

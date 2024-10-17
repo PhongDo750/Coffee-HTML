@@ -21,20 +21,35 @@
             <label for="password">Password:</label>
             <input type="password" id="password" name="password" required><br><br>
 
+            <label for="fullName">Họ và Tên:</label>
+            <input type="text" id="fullName" name="fullName"><br><br>
+
+            <label for="phoneNumber">Số điện thoại:</label>
+            <input type="text" id="phoneNumber" name="phoneNumber"><br><br>
+
+            <label for="email">Email:</label>
+            <input type="text" id="email" name="email"><br><br>
+
             <button type="submit">Sign-up</button>
         </form>
     </div>
     <script>
         // Xử lý đăng ký
-        document.getElementById("registerForm").addEventListener("submit", function(event) {
+    document.getElementById("registerForm").addEventListener("submit", function(event) {
     event.preventDefault();
 
     const username = document.getElementById("username").value;
     const password = document.getElementById("password").value;
+    const fullName = document.getElementById("fullName").value;
+    const phoneNumber = document.getElementById("phoneNumber").value;
+    const email = document.getElementById("email").value;
 
     const registerData = {
         username: username,
-        password: password
+        password: password,
+        fullName: fullName,
+        phoneNumber: phoneNumber,
+        email: email
     };
 
     fetch("http://localhost:8080/api/v1/user/sign-up", {

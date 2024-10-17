@@ -91,14 +91,14 @@ paginationElement.innerHTML = ''; // Clear the old pagination UI
 
 // "Previous" button
 const prevButton = document.createElement('button');
-prevButton.innerText = 'Previous';
+prevButton.innerText = 'Trước';
 prevButton.disabled = data.number === 0; // Disable if it's the first page
 prevButton.onclick = () => loadProducts(data.number - 1, pageSize);
 paginationElement.appendChild(prevButton);
 
 // "Next" button
 const nextButton = document.createElement('button');
-nextButton.innerText = 'Next';
+nextButton.innerText = 'Tiếp theo';
 nextButton.disabled = data.number >= data.totalPages - 1; // Disable if it's the last page
 nextButton.onclick = () => loadProducts(data.number + 1, pageSize);
 paginationElement.appendChild(nextButton);
