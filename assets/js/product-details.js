@@ -288,7 +288,10 @@ async function loadComments(productId, page=0) {
                                     <input type="file" id="edit-comment-image" accept="image/*" class="upload-input" multiple>
                                 </div>
 
-                                <button class="save-comment-btn">Lưu</button>
+                                <div class="edit-buttons">
+                                    <button class="save-comment-btn">Lưu</button>
+                                    <button class="cancel-comment-btn">Thoát</button>
+                                </div>
                             </div>
 
                             <div class="comment-rating">
@@ -477,6 +480,7 @@ document.addEventListener('click', function(event) {
         console.log(editCommentForm);
         const editCommentInput = editCommentForm.querySelector('#edit-comment');
         const saveCommentButton = editCommentForm.querySelector('.save-comment-btn');
+        const exitCommentButton = editCommentForm.querySelector('.cancel-comment-btn');
 
         // Điền thông tin hiện tại vào form
         editCommentInput.value = currentCommentText;
@@ -513,8 +517,21 @@ document.addEventListener('click', function(event) {
 
             editComment(commentId, newCommentText, newRating, newImages);
         };
+
+        exitCommentButton.onclick = () => {
+            //document.querySelector('.edit-comment-form').style.display = 'none';
+            editCommentForm.style.display = 'none';
+        }
+
+        // document.querySelector('.cancel-comment-btn').addEventListener('click', function() {
+            
+        // });
+
     }
 });
+
+//thoát sửa cmt
+
 
 async function editComment(commentId, newCommentText, newRating, newImages) {
     try {
