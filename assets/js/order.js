@@ -58,7 +58,9 @@ function createOrderElement(order, state) {
     const orderElement = document.createElement('div');
     orderElement.classList.add('order-item');
 
-    let orderDetails = `<div class="product-table">`;
+    let orderDetails = `
+        <div class="product-table">
+    `;
 
     if (Array.isArray(order.productOrderOutputs)) {
         order.productOrderOutputs.forEach(product => {
@@ -90,7 +92,7 @@ function createOrderElement(order, state) {
         orderDetails += `
             <div class="cancel-details" id="cancel-details-${order.orderId}" style="display:none;">
             <p><strong>Lý do hủy:</strong> ${order.cancelOrderOutput.reason}</p>
-            <p><strong>Người hủy:</strong> ${order.cancelOrderOutput.cancelerId}</p>
+            <p><strong>Người hủy:</strong> ${order.cancelOrderOutput.name}</p>
             
         `;
     }

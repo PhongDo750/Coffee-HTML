@@ -364,13 +364,23 @@ document.getElementById('add-comment-btn').addEventListener('click', async () =>
 });
 
 // Hàm thêm bình luận
-async function addComment(productId, comment, rating, imageFile) {
+async function addComment(productId, comment, rating, imageFiles) {
+    const formData = new FormData();
+    
+    // Tạo đối tượng commentInput và thêm vào FormData
     const commentInput = {
-            productId: productId,
-            comment: comment,
-            rating: rating,
-            images: imageFile // Nếu không cần file, có thể bỏ qua
-        };
+        productId: productId,
+        comment: comment,
+        rating: rating
+    };
+    
+    formData.append('commentInput', JSON.stringify(commentInput)); // Thêm commentInput dưới dạng JSON
+    if (imageFiles.length > 0) {
+        for (let i = 0; i < imageFiles.length; i++) {
+            formData.append('images', imageFiles[i]); // Thêm từng file vào FormData
+        }
+    }
+
     const accessToken = localStorage.getItem('accessToken');
 
     try {
@@ -378,9 +388,9 @@ async function addComment(productId, comment, rating, imageFile) {
             method: 'POST',
             headers: {
                 'Authorization': 'Bearer ' + accessToken,
-                'Content-Type': 'application/json' // Sử dụng JSON, không phải multipart
+                // Không cần thiết phải thêm Content-Type ở đây, vì trình duyệt sẽ tự động thêm khi gửi FormData
             },
-            body: JSON.stringify(commentInput) // Chuyển dữ liệu thành JSON
+            body: formData // Gửi FormData thay vì JSON
         });
 
         if (response.ok) {
@@ -392,6 +402,7 @@ async function addComment(productId, comment, rating, imageFile) {
         console.error('Error adding comment:', error);
     }
 }
+
 
 // Hàm lấy giá trị query parameter từ URL
 function getQueryParameter(param) {

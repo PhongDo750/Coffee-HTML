@@ -32,16 +32,21 @@
                 <div id="overlay" class="overlay" style="display: none;"></div> <!-- Overlay để làm mờ -->
                 
                 <div id="updateFormContainer" class="form-container" style="display: none;">
-                    <h3>Cập nhật sản phẩm</h3>
-                    <form id="updateForm">
-                        <input type="text" id="productName" placeholder="Tên sản phẩm" required>
-                        <textarea id="productDescription" placeholder="Mô tả sản phẩm" required></textarea>
-                        <input type="number" id="productPrice" placeholder="Giá sản phẩm" required>
-                        <input type="text" id="productImage" placeholder="URL ảnh sản phẩm" required>
-                        <button type="submit">Cập nhật</button>
-                        <button type="button" onclick="hideUpdateForm()">Hủy</button>
-                    </form>
-                </div>
+                <h3>Cập nhật sản phẩm</h3>
+                <form id="updateForm" enctype="multipart/form-data">
+                    <input type="text" id="productName" placeholder="Tên sản phẩm" required>
+                    <textarea id="productDescription" placeholder="Mô tả sản phẩm" required></textarea>
+                    <input type="number" id="productPrice" placeholder="Giá sản phẩm" required>
+                    
+                    <!-- Thay URL ảnh bằng nút chọn file -->
+                    <label for="updateProductImage">Chọn ảnh sản phẩm:
+                        <input type="file" id="updateProductImage" name="image"/>
+                    </label>
+                    
+                    <button type="submit">Cập nhật</button>
+                    <button type="button" onclick="hideUpdateForm()">Hủy</button>
+                </form>
+            </div>
 
                 <div id="pagination" class="pagination">
                     <!-- Buttons will be dynamically inserted here -->
@@ -73,22 +78,19 @@
                         <label for="name">Tên sản phẩm:</label>
                         <input type="text" id="name" name="name" placeholder="Nhập tên sản phẩm" required>
                     </div>
-            
                     <div class="form-group">
                         <label for="description">Mô tả sản phẩm:</label>
                         <textarea id="description" name="description" placeholder="Nhập mô tả sản phẩm" required></textarea>
                     </div>
-            
                     <div class="form-group">
                         <label for="price">Giá sản phẩm:</label>
                         <input type="number" id="price" name="price" placeholder="Nhập giá sản phẩm" required>
                     </div>
-            
-                    <div class="form-group">
-                        <label for="image">URL ảnh sản phẩm:</label>
-                        <input type="text" id="image" name="image" placeholder="Nhập URL ảnh sản phẩm" required>
+                    <div class="form-group" enctype="multipart/form-data">
+                        <label for="createProductImage">Chọn ảnh sản phẩm:
+                            <input type="file" id="createProductImage" name="image" />
+                        </label>
                     </div>
-            
                     <button type="submit">Tạo mới</button>
                 </form>
             </div>

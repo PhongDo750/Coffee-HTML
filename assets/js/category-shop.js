@@ -158,29 +158,6 @@ async function selectProduct(productId, categoryId) {
     }
 }
 
-async function deleteProduct(productId, categoryId) {
-    const accessToken = localStorage.getItem('accessToken');
-
-    try {
-        const response = await fetch(`http://localhost:8080/api/v1/product/delete-product-from-category?categoryId=${categoryId}&productId=${productId}`, {
-            method: 'DELETE',
-            headers: {
-                'Authorization': `Bearer ${accessToken}`
-            }
-        });
-
-        if (response.ok) {
-            alert('Xóa sản phẩm thành công!');
-            // Cập nhật lại danh sách sản phẩm trong bảng
-        } else {
-            alert('Lỗi khi xóa sản phẩm!');
-        }
-    } catch (error) {
-        console.error('Lỗi:', error);
-        alert('Có lỗi xảy ra, vui lòng thử lại!');
-    }
-}
-
 async function showProducts(categoryId) {
     const accessToken = localStorage.getItem('accessToken');
 
@@ -205,7 +182,7 @@ async function showProducts(categoryId) {
                     <td>${product.name}</td>
                     <td>${product.price}</td>
                     <td>
-                        <button onclick="deleteProduct(${product.productId}, ${categoryId})">Xóa</button>
+                        <button onclick="deleteProductFromCategory(${product.productId}, ${categoryId})">Xóa</button>
                     </td>
                 `;
                 productList.appendChild(row);
@@ -222,7 +199,7 @@ async function showProducts(categoryId) {
     }
 }
 
-async function deleteProduct(productId, categoryId) {
+async function deleteProductFromCategory(productId, categoryId) {
     const accessToken = localStorage.getItem('accessToken');
 
     try {

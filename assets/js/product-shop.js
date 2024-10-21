@@ -135,7 +135,7 @@ async function loadOrdersByState(page = 0, size = 10) {
                         <button onclick="toggleCancelDetails(${order.orderId})">Chi tiết đơn hủy</button>
                         <div class="cancel-details" id="cancel-details-${order.orderId}" style="display:none;">
                             <p><strong>Lý do hủy:</strong> ${order.cancelOrderOutput.reason}</p>
-                            <p><strong>Người hủy:</strong> ${order.cancelOrderOutput.cancelerId || 'Không xác định'}</p>
+                            <p><strong>Người hủy:</strong> ${order.cancelOrderOutput.name || 'Không xác định'}</p>
                         </div>
                     </div>
                 `;
@@ -215,7 +215,7 @@ function showUpdateForm(product) {
     document.getElementById('productName').value = product.name;
     document.getElementById('productDescription').value = product.description;
     document.getElementById('productPrice').value = product.price;
-    document.getElementById('productImage').value = product.image;
+
     document.getElementById('updateFormContainer').style.display = 'block';
     document.getElementById('overlay').style.display = 'block'; // Hiển thị overlay làm mờ
 }
@@ -227,33 +227,50 @@ function hideUpdateForm() {
     currentProductId = null;
 }
 
-// Xử lý sự kiện khi gửi form cập nhật
 document.getElementById('updateForm').addEventListener('submit', async (event) => {
     event.preventDefault();
     if (currentProductId) {
-        const updatedProduct = {
+        const formData = new FormData(); // Sử dụng FormData để gửi cả file và JSON
+
+        // Thêm productInput dưới dạng Blob
+        const productInput = {
             name: document.getElementById('productName').value,
             description: document.getElementById('productDescription').value,
-            price: document.getElementById('productPrice').value,
-            image: document.getElementById('productImage').value,
+            price: document.getElementById('productPrice').value
         };
-        console.log('Updating product with data:', updatedProduct);
-        await updateProduct(currentProductId, updatedProduct);
+
+        // Chuyển productInput thành Blob (application/json)
+        const productInputBlob = new Blob([JSON.stringify(productInput)], { type: 'application/json' });
+        formData.append('productInput', productInputBlob); // Giữ đúng key 'productInput'
+
+        // Lấy file từ input và thêm vào formData
+        const fileInput = document.getElementById('updateProductImage');
+        if (fileInput.files.length > 0) {
+            formData.append('image', fileInput.files[0]); // Giữ key 'image' cho phù hợp với backend
+        }
+
+        console.log('Updating product with form data:', formData);
+
+        // Gửi request update sản phẩm
+        await updateProduct(currentProductId, formData);
+
+        // Reload lại danh sách sản phẩm và ẩn form
         loadProducts(currentPage, pageSize);
         hideUpdateForm();
     }
 });
 
+
+
 // Cập nhật sản phẩm
-async function updateProduct(productId, updatedProduct) {
+async function updateProduct(productId, formData) {
     try {
         const response = await fetch(`http://localhost:8080/api/v1/product/update?productId=${productId}`, {
             method: 'POST',
             headers: {
-                'Content-Type': 'application/json',
                 'Authorization': 'Bearer ' + localStorage.getItem('accessToken')
             },
-            body: JSON.stringify(updatedProduct)
+            body: formData
         });
         if (!response.ok) {
             throw new Error('Error updating product');
@@ -335,24 +352,38 @@ async function submitProduct() {
         return;
     }
 
+    const formData = new FormData(); // Sử dụng FormData để gửi cả file và JSON
+
+    // Thêm productInput dưới dạng Blob
     const productInput = {
         name: document.getElementById('name').value,
         description: document.getElementById('description').value,
-        price: parseInt(document.getElementById('price').value),
-        image: document.getElementById('image').value
+        price: document.getElementById('price').value
     };
+
+    // Chuyển productInput thành Blob (application/json)
+    const productInputBlob = new Blob([JSON.stringify(productInput)], { type: 'application/json' });
+    formData.append('productInput', productInputBlob); // Giữ đúng key 'productInput'
+
+    // Lấy file từ input và thêm vào formData
+    const fileInput = document.getElementById('createProductImage');
+    if (fileInput.files.length > 0) {
+        formData.append('image', fileInput.files[0]); // Giữ key 'image' cho phù hợp với backend
+    }
+
+    console.log('Updating product with form data:', formData);
 
     try {
         const response = await fetch('http://localhost:8080/api/v1/product/create', {
             method: 'POST',
             headers: {
-                'Authorization': `Bearer ${accessToken}`,
-                'Content-Type': 'application/json'
+                'Authorization': `Bearer ${accessToken}`
             },
-            body: JSON.stringify(productInput)
+            body: formData
         });
 
         alert('Sản phẩm đã được tạo thành công!');
+        location.reload();
         // Ẩn form và hiển thị lại danh sách sản phẩm
         showTab('edit-product');
     } catch (error) {
