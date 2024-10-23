@@ -65,16 +65,19 @@ async function loadOrdersByState(page = 0, size = 10) {
     try {
         const state = document.getElementById('orderState').value; // Lấy trạng thái đơn hàng
         const accessToken = localStorage.getItem('accessToken'); // Lấy token từ localStorage
+        console.log(accessToken)
         
         const response = await fetch(`http://localhost:8080/api/v1/shop-order/get-orders?state=${state}&page=${page}&size=${size}`, {
             method: 'GET',
             headers: {
-                'Authorization': 'Bearer ' + accessToken // Thêm token vào header
+                'Authorization': `Bearer ${accessToken}` // Thêm token vào header
             }
         });
 
         // Kiểm tra xem phản hồi có thành công hay không
         if (!response.ok) {
+            const errorDetails = await response.json(); // Nhận chi tiết lỗi từ server (nếu có)
+            console.log('Error Details:', errorDetails); // Log chi tiết lỗi
             throw new Error('Error loading orders');
         }
 

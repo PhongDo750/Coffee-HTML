@@ -94,14 +94,14 @@ function updatePagination(data, categoryId) {
 
     // Nút "Previous"
     const prevButton = document.createElement('button');
-    prevButton.innerText = 'Previous';
+    prevButton.innerText = 'Trước';
     prevButton.disabled = data.number === 0; // Vô hiệu nếu đang ở trang đầu
     prevButton.onclick = () => loadProductsByCategory(categoryId, data.number - 1, pageSize); // Quay về trang trước
     paginationElement.appendChild(prevButton);
 
     // Nút "Next"
     const nextButton = document.createElement('button');
-    nextButton.innerText = 'Next';
+    nextButton.innerText = 'Tiếp theo';
     nextButton.disabled = data.number >= data.totalPages - 1; // Vô hiệu nếu đang ở trang cuối
     nextButton.onclick = () => loadProductsByCategory(categoryId, data.number + 1, pageSize); // Tới trang tiếp theo
     paginationElement.appendChild(nextButton);

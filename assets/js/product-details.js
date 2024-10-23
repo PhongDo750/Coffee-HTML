@@ -201,30 +201,35 @@ async function loadCategories() {
 }
 
 async function addProductToCart(productId, quantity) {
-    try {
-        const accessToken = localStorage.getItem('accessToken'); // Lấy accessToken từ localStorage
-        const cartInput = { // Tạo đối tượng cartInput để gửi
-            productId: productId,
-            quantityOrder: quantity
-        };
-
-        const response = await fetch('http://localhost:8080/api/v1/cart/add', {
-            method: 'POST',
-            headers: {
-                'Authorization': 'Bearer ' + accessToken,
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(cartInput) // Chuyển đổi đối tượng cartInput sang JSON
-        });
-
-        if (response.ok) {
-            alert('Sản phẩm đã được thêm vào giỏ hàng!'); // Thông báo thành công
-        } else {
-            throw new Error('Lỗi khi thêm sản phẩm vào giỏ hàng');
+    const accessToken = localStorage.getItem('accessToken'); // Lấy accessToken từ localStorage
+    if (!accessToken || accessToken.trim() === "") {
+        alert("Bạn chưa đăng nhập. Vui lòng đăng nhập trước khi mua sản phẩm");
+        window.location.assign("login.html");
+    } else {
+        try {
+            const cartInput = { // Tạo đối tượng cartInput để gửi
+                productId: productId,
+                quantityOrder: quantity
+            };
+    
+            const response = await fetch('http://localhost:8080/api/v1/cart/add', {
+                method: 'POST',
+                headers: {
+                    'Authorization': 'Bearer ' + accessToken,
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(cartInput) // Chuyển đổi đối tượng cartInput sang JSON
+            });
+    
+            if (response.ok) {
+                alert('Sản phẩm đã được thêm vào giỏ hàng!'); // Thông báo thành công
+            } else {
+                throw new Error('Lỗi khi thêm sản phẩm vào giỏ hàng');
+            }
+        } catch (error) {
+            console.error('Error adding product to cart:', error);
+            alert('Có lỗi xảy ra khi thêm sản phẩm vào giỏ hàng. Vui lòng thử lại sau.');
         }
-    } catch (error) {
-        console.error('Error adding product to cart:', error);
-        alert('Có lỗi xảy ra khi thêm sản phẩm vào giỏ hàng. Vui lòng thử lại sau.');
     }
 }
 

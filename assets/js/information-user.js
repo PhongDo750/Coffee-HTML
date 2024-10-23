@@ -82,7 +82,8 @@ document.addEventListener("DOMContentLoaded", function() {
             console.error('Lỗi khi lấy thông tin người dùng:', error);
         });
     } else {
-        console.log('Không tìm thấy access token');
+        alert("Bạn chưa đăng nhập. Vui lòng đăng nhập để xem thông tin");
+        window.location.assign("login.html");
     }
 });
 
