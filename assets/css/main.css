@@ -554,3 +554,37 @@
     margin-top: 25px;
     font-size: 1.8rem;
 }
+
+.search-container {
+    margin-top: 5px; /* Khoảng cách giữa biểu tượng và ô tìm kiếm */
+    display: flex; /* Sử dụng flexbox để căn giữa các phần tử */
+    align-items: center; /* Căn giữa các phần tử theo chiều dọc */
+}
+
+.search-container input {
+    padding: 5px; /* Thêm khoảng đệm cho ô input */
+    border-radius: 5px; /* Bo tròn các góc của ô input */
+    border: 1px solid #ddd; /* Đường viền mờ cho ô input */
+    margin-left: 10px; /* Khoảng cách giữa ô input và nút tìm */
+    width: 200px; /* Chiều rộng của ô input */
+}
+
+.search-container input:focus {
+    border-color: #007BFF; /* Màu xanh khi ô input được chọn */
+    outline: none; /* Ẩn viền mặc định */
+}
+
+#searchButton {
+    background-color: #007BFF; /* Màu nền cho nút tìm */
+    color: white; /* Màu chữ */
+    border: none; /* Không có viền */
+    border-radius: 5px; /* Bo tròn góc */
+    padding: 5px 10px; /* Thêm khoảng đệm */
+    cursor: pointer; /* Đổi con trỏ thành tay khi hover */
+    margin-left: 5px;
+}
+
+#searchButton:hover {
+    background-color: #0056b3; /* Màu nền khi hover */
+}
+

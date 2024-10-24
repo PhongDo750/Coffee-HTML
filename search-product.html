@@ -4,16 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Coffee House</title>
-    <link rel="shortcut icon" href="./assets/img/logo.webp" type="">
+    <link rel="shortcut icon" href="./assets/img/logo.webp">
     <link rel="stylesheet" href="./assets/css/main.css">
     <link rel="stylesheet" href="./assets/css/base.css">
     <link rel="stylesheet" href="./assets/css/grid.css">
-    <link rel="stylesheet" href="./assets/css/cart.css">
-    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&amp;display=swap&amp;subset=vietnamese" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap&subset=vietnamese" rel="stylesheet">
     <link rel="stylesheet" href="./assets/icon/fontawesome-free-6.2.0-web/css/all.css">
-    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet">
 </head>
-
 <body>
     <div class="main">
         <div class="header_1">
@@ -23,7 +20,7 @@
                 </div>
                 <ul class="navbar_menu">
                     <li><a href="main.html">Trang chủ</a></li>
-                    <li><a href="#introduce">Giới thiệu</a></li>
+                    <li><a href="#">Giới thiệu</a></li>
                     <li class="dropdown">
                         <a href="#product">Sản phẩm</a>
                         <ul class="dropdown_content">
@@ -54,32 +51,23 @@
             </nav>
         </div>
 
-        <div class="cart-container">
-            <table class="cart-table">
-                <thead>
-                    <tr>
-                        <th></th>
-                        <th>Hình ảnh</th>
-                        <th>Thông tin sản phẩm</th>
-                        <th>Đơn giá</th>
-                        <th>Số lượng</th>
-                        <th>Thành tiền</th>
-                        <th>Hành động</th> <!-- Thêm cột cho hành động -->
-                    </tr>
-                </thead>
-                <tbody id="cart-body">
-                    <!-- Nội dung sản phẩm sẽ được điền ở đây -->
-                </tbody>
-            </table>
-        </div>
-
-        <div id="pagination" class="pagination"></div> <!-- Thêm phần phân trang -->
-        <div class="order-button-container">
-            <button id="orderButton" class="order-button">Đặt hàng</button>
-        </div>
-    </div>
+        <section class="section_menu_today">
+            <div class="products">
+                <div class="row">
+                    <div class="product-list" id="product-list">
+                        <!-- Products will be inserted here by JavaScript -->
+                    </div>
+                </div>
+            </div>
     
-    <script src="./assets/js/cart.js"></script>
-    <script src="./assets/js/log-out.js"></script>   
+            <div id="pagination" class="pagination">
+                <!-- Buttons will be dynamically inserted here -->
+            </div>
+        </section>
+        
+    </div>
+
+    <script src="./assets/js/search-product.js"></script>
 </body>
 </html>
+

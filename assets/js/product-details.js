@@ -408,6 +408,46 @@ async function addComment(productId, comment, rating, imageFiles) {
     }
 }
 
+document.addEventListener('DOMContentLoaded', function() {
+    document.getElementById('searchIcon').addEventListener('click', function() {
+        const searchContainer = document.getElementById('searchContainer');
+        if (searchContainer.style.display === 'none' || searchContainer.style.display === '') {
+            searchContainer.style.display = 'flex'; // Hiển thị ô tìm kiếm
+        } else {
+            searchContainer.style.display = 'none'; // Ẩn ô tìm kiếm
+        }
+    });
+
+    document.getElementById('searchButton').addEventListener('click', function() {
+        const searchQuery = document.querySelector('input[placeholder="Tìm kiếm..."]').value; // Lấy giá trị từ ô tìm kiếm
+        const accessToken = 'Bearer ' + localStorage.getItem('accessToken'); // Giả sử bạn lưu access token trong localStorage
+
+        // Gọi API để lấy sản phẩm theo tìm kiếm
+        fetch(`http://localhost:8080/api/v1/product/get-products-by-search?search=${encodeURIComponent(searchQuery)}`, {
+            method: 'GET',
+            headers: {
+                'Authorization': accessToken,
+                'Content-Type': 'application/json'
+            }
+        })
+        .then(response => {
+            if (response.ok) {
+                return response.json(); // Chuyển đổi dữ liệu nhận được thành JSON
+            } else {
+                throw new Error('Network response was not ok');
+            }
+        })
+        .then(data => {
+            // Chuyển hướng tới trang mới và truyền dữ liệu
+            localStorage.setItem('products', JSON.stringify(data.content)); // Giả sử data.content chứa danh sách sản phẩm
+            window.location.href = '/search-product.html'; // Thay đổi thành đường dẫn thực tế của trang mới
+        })
+        .catch(error => {
+            console.error('There was a problem with the fetch operation:', error);
+        });
+    });
+});
+
 
 // Hàm lấy giá trị query parameter từ URL
 function getQueryParameter(param) {
