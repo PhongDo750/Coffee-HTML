@@ -83,7 +83,7 @@ function createOrderElement(order, state) {
     <div class="order-summary">
         ${state === 'PENDING_PAYMENT' ? `<button class="cancel-button" onclick="cancelOrder(${order.orderId})">Hủy đơn hàng</button>` : ''}
         ${state !== 'PENDING_PAYMENT' && order.cancelOrderOutput && order.cancelOrderOutput.reason ? `<button class="cancel-button" onclick="toggleCancelDetails(${order.orderId})">Chi tiết đơn hủy</button>` : ''}
-        <p class="total-price">Total Price: ₫${(order.totalPrice || 0).toLocaleString()}</p>
+        <p class="total-price">Tổng tiền: ₫${(order.totalPrice || 0).toLocaleString()}</p>
     </div>
     `;
 
