@@ -599,7 +599,7 @@ async function editComment(commentId, newCommentText, newRating, newImages) {
             throw new Error(`Error: ${response.status} - ${response.statusText}`);
         }
 
-        alert("Chỉnh sửa bình luận thành công").
+        alert("Chỉnh sửa bình luận thành công");
 
         // Tải lại bình luận sau khi chỉnh sửa thành công
         loadComments(getQueryParameter('productId'), currentPageComment);
